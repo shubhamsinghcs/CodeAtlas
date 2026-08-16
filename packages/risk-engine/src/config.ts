@@ -43,8 +43,14 @@ export interface FileMetrics {
   hasCircularDependency: boolean;
 }
 
+export interface RiskFactor {
+  name: string;
+  description: string;
+  contribution: number;
+}
+
 export interface RiskEvaluation {
   score: number;
   level: RiskLevel;
-  reasons: string[];
+  factors: RiskFactor[];
 }

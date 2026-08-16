@@ -57,9 +57,9 @@ export const impactCommand = new Command('impact')
             ? pc.yellow
             : pc.green;
       console.log(`  Level: ${riskColor(result.risk.level)} (Score: ${result.risk.score})`);
-      if (result.risk.reasons.length > 0) {
-        console.log(`  Reasons:`);
-        result.risk.reasons.forEach((r) => console.log(`    - ${r}`));
+      if (result.risk.factors.length > 0) {
+        console.log(`  Factors:`);
+        result.risk.factors.forEach((f) => console.log(`    - ${f.name} (+${f.contribution})`));
       }
 
       console.log('\n');

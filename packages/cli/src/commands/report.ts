@@ -131,8 +131,8 @@ ${highRiskFiles
     (r) => `### \`${r.file.path}\`
 - **Risk Score**: ${r.risk.score} (${r.risk.level})
 - **Fan-in**: ${r.fanIn} | **Fan-out**: ${r.fanOut}
-- **Reasons**:
-${r.risk.reasons.map((reason) => `  - ${reason}`).join('\n')}
+- **Factors**:
+${r.risk.factors.map((f) => `  - **${f.name}** (+${f.contribution}): ${f.description}`).join('\n')}
 `,
   )
   .join('\n')}

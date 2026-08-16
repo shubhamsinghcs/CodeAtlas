@@ -6,7 +6,7 @@ interface ImpactPanelProps {
   targetNodeLabel: string;
   impactData: {
     score: number;
-    risk?: { score: number; level: string; reasons: string[] };
+    risk?: { score: number; level: string; factors: { name: string; description: string; contribution: number }[] };
     directDependents: { filePath: string }[];
     transitiveDependents: { filePath: string }[];
     directDependencies: { filePath: string }[];
@@ -46,10 +46,17 @@ export function ImpactPanel({ targetNodeLabel, impactData, isLoading, onClose }:
                     {impactData.risk.score}/100 ({impactData.risk.level})
                   </span>
                 </div>
-                {impactData.risk.reasons.length > 0 && (
-                  <ul style={{ fontSize: '0.85rem', paddingLeft: '1.2rem', margin: 0, color: 'var(--text-muted)' }}>
-                    {impactData.risk.reasons.map((r, i) => <li key={i}>{r}</li>)}
-                  </ul>
+                {impactData.risk.factors.length > 0 && (
+                  <div style={{ marginTop: '1rem' }}>
+                    <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-main)' }}>Why is this file risky?</p>
+                    <ul style={{ fontSize: '0.85rem', paddingLeft: '1.2rem', margin: 0, color: 'var(--text-muted)' }}>
+                      {impactData.risk.factors.map((f, i) => (
+                        <li key={i} style={{ marginBottom: '0.2rem' }}>
+                          <span style={{ fontWeight: 500, color: 'var(--text-main)' }}>{f.name} (+{f.contribution}):</span> {f.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             )}

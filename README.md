@@ -33,6 +33,26 @@ Open `http://localhost:3000` to explore your repository's architecture, risk pro
 - **Model Context Protocol (MCP)**: Native integration with Claude Desktop or Cursor.
 - **Local-First & Private**: Your source code never leaves your machine unless you explicitly configure an external AI provider.
 
+### Architectural Risk Heuristic
+
+CodeAtlas calculates an **Architectural Risk Heuristic** for every file. This score (0-100) is deterministically computed based on specific contributing factors. 
+
+**Note**: This is an architectural heuristic, not a security guarantee, vulnerability score, or correctness proof.
+
+**Risk Factors and Normalization**:
+- **High fan-in**: File has many dependents (max +10 pts).
+- **High fan-out**: File imports many modules (max +15 pts).
+- **Dependency depth**: File is deeply nested in the graph (max +15 pts).
+- **Large file**: Exceeds size thresholds (max +20 pts).
+- **Missing tests**: No related test files detected nearby (max +20 pts).
+- **Circular dependency**: File is part of a dependency cycle (max +20 pts).
+
+The raw points are summed, and the final score is strictly capped at a maximum of `100`.
+
+- **Low Risk**: 0-39
+- **Medium Risk**: 40-69
+- **High Risk**: 70-100
+
 ## Installation
 
 ```bash

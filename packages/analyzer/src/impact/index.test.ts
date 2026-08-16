@@ -140,8 +140,8 @@ describe('ImpactAnalyzer Integration', () => {
     expect(result.transitiveDependents).toHaveLength(0);
 
     // Risk
-    // api.ts has fanIn: 0, depth: 0, no tests. Risk = Missing Tests (+20) -> Low Risk
-    expect(result.risk.reasons).toContain('no related test');
+    // api.ts has fanIn: 0, depth: 0, no tests. Risk = Missing Tests (+20)
+    expect(result.risk.factors).toContainEqual(expect.objectContaining({ name: 'Missing tests' }));
   });
 
   it('throws an error for missing file', () => {

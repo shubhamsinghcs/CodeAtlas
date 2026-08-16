@@ -18,7 +18,7 @@ describe('RiskEngine', () => {
 
     expect(result.score).toBe(0);
     expect(result.level).toBe('Low Risk');
-    expect(result.reasons).toHaveLength(0);
+    expect(result.factors).toHaveLength(0);
   });
 
   it('adds points for missing tests', () => {
@@ -27,7 +27,7 @@ describe('RiskEngine', () => {
 
     expect(result.score).toBe(20);
     expect(result.level).toBe('Low Risk');
-    expect(result.reasons).toContain('no related test');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'Missing tests', contribution: 20 }));
   });
 
   it('adds points for high fan-in', () => {
@@ -35,7 +35,7 @@ describe('RiskEngine', () => {
     const result = engine.evaluate({ ...defaultMetrics, fanIn: 15 });
 
     expect(result.score).toBe(10);
-    expect(result.reasons).toContain('high fan-in (15 dependents)');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'High fan-in', contribution: 10 }));
   });
 
   it('adds points for high fan-out', () => {
@@ -43,7 +43,7 @@ describe('RiskEngine', () => {
     const result = engine.evaluate({ ...defaultMetrics, fanOut: 8 });
 
     expect(result.score).toBe(15);
-    expect(result.reasons).toContain('high fan-out (8 dependencies)');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'High fan-out', contribution: 15 }));
   });
 
   it('adds points for large files', () => {
@@ -51,7 +51,7 @@ describe('RiskEngine', () => {
     const result = engine.evaluate({ ...defaultMetrics, lines: 400 });
 
     expect(result.score).toBe(20);
-    expect(result.reasons).toContain('large file (400 lines)');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'Large file', contribution: 20 }));
   });
 
   it('adds points for circular dependencies', () => {
@@ -59,7 +59,7 @@ describe('RiskEngine', () => {
     const result = engine.evaluate({ ...defaultMetrics, hasCircularDependency: true });
 
     expect(result.score).toBe(20);
-    expect(result.reasons).toContain('circular dependency');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'Circular dependency', contribution: 20 }));
   });
 
   it('adds points for deep dependency tree', () => {
@@ -67,7 +67,7 @@ describe('RiskEngine', () => {
     const result = engine.evaluate({ ...defaultMetrics, depth: 6 });
 
     expect(result.score).toBe(15);
-    expect(result.reasons).toContain('deep dependency tree (depth 6)');
+    expect(result.factors).toContainEqual(expect.objectContaining({ name: 'Dependency depth', contribution: 15 }));
   });
 
   it('correctly categorizes High Risk and caps at 100', () => {
@@ -84,7 +84,7 @@ describe('RiskEngine', () => {
     // Total sum = 100, wait 10+15+15+20+20+20 = 100 exactly.
     expect(result.score).toBe(100);
     expect(result.level).toBe('High Risk');
-    expect(result.reasons).toHaveLength(6);
+    expect(result.factors).toHaveLength(6);
   });
 
   it('caps the score strictly at 100', () => {

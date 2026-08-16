@@ -4,6 +4,7 @@ import {
   FileMetrics,
   RiskEvaluation,
   RiskLevel,
+  RiskFactor,
 } from './config';
 
 export class RiskEngine {
@@ -15,44 +16,66 @@ export class RiskEngine {
 
   public evaluate(metrics: FileMetrics): RiskEvaluation {
     let score = 0;
-    const reasons: string[] = [];
+    const factors: RiskFactor[] = [];
 
     // 1. Fan In
     if (metrics.fanIn > this.config.fanInThreshold) {
       score += this.config.fanInWeight;
-      reasons.push(`high fan-in (${metrics.fanIn} dependents)`);
-    } else if (metrics.fanIn > 0 && metrics.fanIn <= this.config.fanInThreshold) {
-      // Partial penalty for some fan-in, optional, but let's stick to threshold based for determinism
+      factors.push({
+        name: 'High fan-in',
+        description: `${metrics.fanIn} files depend on it.`,
+        contribution: this.config.fanInWeight
+      });
     }
 
     // 2. Fan Out
     if (metrics.fanOut > this.config.fanOutThreshold) {
       score += this.config.fanOutWeight;
-      reasons.push(`high fan-out (${metrics.fanOut} dependencies)`);
+      factors.push({
+        name: 'High fan-out',
+        description: `It imports ${metrics.fanOut} modules.`,
+        contribution: this.config.fanOutWeight
+      });
     }
 
     // 3. Depth
     if (metrics.depth > this.config.depthThreshold) {
       score += this.config.depthWeight;
-      reasons.push(`deep dependency tree (depth ${metrics.depth})`);
+      factors.push({
+        name: 'Dependency depth',
+        description: `It sits ${metrics.depth} levels deep in the dependency graph.`,
+        contribution: this.config.depthWeight
+      });
     }
 
     // 4. File Size
     if (metrics.lines > this.config.fileSizeThreshold) {
       score += this.config.fileSizeWeight;
-      reasons.push(`large file (${metrics.lines} lines)`);
+      factors.push({
+        name: 'Large file',
+        description: `File has ${metrics.lines} lines.`,
+        contribution: this.config.fileSizeWeight
+      });
     }
 
     // 5. Missing Tests
     if (!metrics.hasTests) {
       score += this.config.missingTestWeight;
-      reasons.push('no related test');
+      factors.push({
+        name: 'Missing tests',
+        description: `No nearby tests were detected.`,
+        contribution: this.config.missingTestWeight
+      });
     }
 
     // 6. Circular Dependencies
     if (metrics.hasCircularDependency) {
       score += this.config.circularDependencyWeight;
-      reasons.push('circular dependency');
+      factors.push({
+        name: 'Circular dependency',
+        description: `Involved in a dependency cycle.`,
+        contribution: this.config.circularDependencyWeight
+      });
     }
 
     // Cap the score at 100
@@ -61,7 +84,7 @@ export class RiskEngine {
     return {
       score,
       level: this.getRiskLevel(score),
-      reasons,
+      factors,
     };
   }
 
