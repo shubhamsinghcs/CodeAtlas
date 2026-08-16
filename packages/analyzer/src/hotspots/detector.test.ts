@@ -12,17 +12,26 @@ describe('HotspotDetector', () => {
     const migrationsFolder = path.resolve(__dirname, '../../../database/drizzle');
     dbClient.runMigrations(migrationsFolder);
     
-    // Seed repositories and analysis runs
     dbClient.db.insert(schema.repositories).values({
       id: 'repo_1',
-      type: 'local_git',
-      localPath: '/tmp/repo'
+      name: 'repo_1',
+      type: 'local',
+      pathOrUrl: '/tmp/repo',
+      createdAt: new Date()
+    }).run();
+
+    dbClient.db.insert(schema.commits).values({
+      id: 'commit_1',
+      repositoryId: 'repo_1',
+      hash: 'abc'
     }).run();
 
     dbClient.db.insert(schema.analysisRuns).values({
       id: 'run_1',
       repositoryId: 'repo_1',
-      startedAt: new Date().toISOString()
+      commitId: 'commit_1',
+      status: 'completed',
+      startedAt: new Date()
     }).run();
   });
 
@@ -58,7 +67,18 @@ describe('HotspotDetector', () => {
         id: `imp_in_${i}`,
         fileId: `dep_${i}`,
         resolvedFileId: 'file_1',
-        source: 'src/god_object'
+        source: 'src/god_object',
+        startLine: 1,
+        endLine: 1
+      }).run();
+
+      dbClient.db.insert(schema.imports).values({
+        id: `imp_out_${i}`,
+        fileId: 'file_1',
+        resolvedFileId: `dep_${i}`,
+        source: `src/dep_${i}`,
+        startLine: 1,
+        endLine: 1
       }).run();
     }
 
@@ -67,7 +87,9 @@ describe('HotspotDetector', () => {
       id: 'imp_test',
       fileId: 'file_4',
       resolvedFileId: 'file_3',
-      source: '../src/auth'
+      source: '../src/auth',
+      startLine: 1,
+      endLine: 1
     }).run();
 
     const detector = new HotspotDetector(dbClient);

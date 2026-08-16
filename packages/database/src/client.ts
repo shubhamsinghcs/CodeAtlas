@@ -59,6 +59,11 @@ CREATE TABLE IF NOT EXISTS \`files\` (
 	\`size\` integer NOT NULL,
 	\`lines\` integer NOT NULL,
 	\`hash\` text,
+	\`commit_count\` integer,
+	\`author_count\` integer,
+	\`recent_modifications\` integer,
+	\`last_modified\` integer,
+	\`churn\` text,
 	FOREIGN KEY (\`run_id\`) REFERENCES \`analysis_runs\`(\`id\`) ON UPDATE no action ON DELETE cascade
 );
 CREATE TABLE IF NOT EXISTS \`imports\` (
