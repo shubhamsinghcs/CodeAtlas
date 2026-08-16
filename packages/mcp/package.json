@@ -1,0 +1,33 @@
+{
+  "name": "@codeatlas/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@codeatlas/ai": "workspace:*",
+    "@codeatlas/analyzer": "workspace:*",
+    "@codeatlas/database": "workspace:*",
+    "@codeatlas/risk-engine": "workspace:*",
+    "@codeatlas/shared": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "drizzle-orm": "^0.45.2",
+    "zod": "^3.22.4"
+  },
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}

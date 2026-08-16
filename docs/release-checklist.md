@@ -1,0 +1,46 @@
+# CodeAtlas Release Checklist
+
+- [x] Fresh clone works
+- [x] pnpm install works
+- [x] Build passes
+- [x] Tests pass
+- [x] Typecheck passes
+- [x] Lint passes
+- [x] CLI works
+- [x] GitHub repository analysis works
+- [x] Local repository analysis works
+- [x] TypeScript analysis works
+- [x] JavaScript analysis works
+- [x] Python analysis works
+- [x] Symbol extraction works
+- [x] Import extraction works
+- [x] Export extraction works
+- [x] Test detection works
+- [x] API route detection works where supported
+- [x] Dependency graph works
+- [x] Circular dependency detection works
+- [x] Fan-in works
+- [x] Fan-out works
+- [x] Risk scoring works
+- [x] Risk explanations work
+- [x] Impact analysis works
+- [x] Search works
+- [x] Dashboard works
+- [x] Graph visualization works
+- [x] AI-disabled mode works
+- [x] AI-enabled mode works when configured
+- [x] AI validation works
+- [x] AI caching works
+- [x] MCP works
+- [x] Markdown report works
+- [x] Docker works if supported
+- [x] npm package works
+- [x] CI works
+- [x] README is accurate
+- [x] CONTRIBUTING is accurate
+- [x] SECURITY is accurate
+- [x] No secrets committed
+- [x] No fake features
+- [x] No fake metrics
+- [x] No unfinished placeholders
+- [x] No accidental RepoLens branding

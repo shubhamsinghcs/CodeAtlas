@@ -1,0 +1,1 @@
+ALTER TABLE `imports` ADD `resolved_file_id` text REFERENCES files(id);
