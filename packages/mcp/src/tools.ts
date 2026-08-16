@@ -144,15 +144,36 @@ export async function handlePlanChange(featureRequest: string) {
   const rawContext = allFiles.map(f => f.path).join('\\n');
 
   if (aiConfig.provider || aiConfig.baseUrl) {
-    const plan = await generateFeaturePlan(dbClient, featureRequest, rawContext, latestRun[0].repositoryId, latestRun[0].commitId);
-    if (plan) return JSON.stringify(plan, null, 2);
+    let plan = await generateFeaturePlan(dbClient, featureRequest, rawContext, latestRun[0].repositoryId, latestRun[0].commitId);
+    
+    // Check if the AI failed to generate valid json, and return fallback if so
+    if (!plan) {
+      return JSON.stringify({ error: "Malformed AI output or validation failure." }, null, 2);
+    }
+    
+    return JSON.stringify({
+      _meta: { note: `Generated using ${aiConfig.provider || 'custom provider'}` },
+      ...plan
+    }, null, 2);
   }
 
-  // Deterministic fallback
+  // Deterministic fallback search for patterns
+  const keywords = featureRequest.toLowerCase().split(/\W+/).filter(w => w.length > 3);
+  const existingPatterns = allFiles
+    .filter(f => keywords.some(k => f.path.toLowerCase().includes(k)))
+    .map(f => f.path)
+    .slice(0, 5); // Limit to top 5 hits
+
   return JSON.stringify({
-    note: "AI provider not configured. Showing deterministic plan outline.",
-    goal: featureRequest,
-    orderedSteps: [
+    _meta: { note: "AI provider not configured. Showing deterministic plan outline." },
+    userGoal: featureRequest,
+    repositoryAreas: ["Core"],
+    filesToInspect: [],
+    recommendedFiles: [],
+    existingPatterns,
+    testsToAdd: [],
+    risks: ["Unknown without AI analysis"],
+    implementationOrder: [
       "Identify target files using codeatlas_search_symbols",
       "Check impact of changes using codeatlas_get_impact",
       "Implement changes",

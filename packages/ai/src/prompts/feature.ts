@@ -3,14 +3,14 @@ import { generateStructuredJson } from '../provider';
 import { DatabaseClient } from '@codeatlas/database';
 
 export const FeatureImplementationPlanSchema = z.object({
-  goal: z.string(),
+  userGoal: z.string(),
   repositoryAreas: z.array(z.string()),
   filesToInspect: z.array(z.string()),
-  filesToModify: z.array(z.string()),
+  recommendedFiles: z.array(z.string()),
   existingPatterns: z.array(z.string()),
-  tests: z.array(z.string()),
+  testsToAdd: z.array(z.string()),
   risks: z.array(z.string()),
-  orderedSteps: z.array(z.string()),
+  implementationOrder: z.array(z.string()),
 });
 
 export type FeatureImplementationPlan = z.infer<typeof FeatureImplementationPlanSchema>;
@@ -22,7 +22,7 @@ export async function generateFeaturePlan(
   repositoryId: string,
   commitHash: string
 ): Promise<FeatureImplementationPlan | null> {
-  const prompt = `Based on the following repository context, create an implementation plan for this feature: "${featureRequest}"\n\nRepository Context:\n${contextDataStr}`;
+  const prompt = `Based on the following repository context, create an implementation plan for this feature: "${featureRequest}"\n\nSearch the repository for related implementations to find existing patterns. Only report patterns actually found. Never fabricate information.\n\nRepository Context:\n${contextDataStr}`;
   
   return generateStructuredJson(dbClient, prompt, FeatureImplementationPlanSchema, {
     repositoryId,

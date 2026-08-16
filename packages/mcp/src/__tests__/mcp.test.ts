@@ -17,7 +17,10 @@ describe('MCP Tools', () => {
     vi.spyOn(toolsModule.dbClient.db as unknown as { select: Function }, 'select').mockReturnValue({
       from: vi.fn().mockReturnThis(),
       orderBy: vi.fn().mockReturnThis(),
-      limit: vi.fn().mockResolvedValue([{ id: 'run1', repositoryId: 'repo1', commitId: 'commit1' }]),
+      limit: vi.fn().mockResolvedValue([
+        { id: 'run1', repositoryId: 'repo1', commitId: 'commit1', path: 'src/auth/login.ts' },
+        { id: 'run2', repositoryId: 'repo1', commitId: 'commit1', path: 'src/utils/math.ts' }
+      ]),
     });
   });
 
@@ -52,28 +55,47 @@ describe('MCP Tools', () => {
     it('returns deterministic fallback when AI is not configured', async () => {
       vi.mocked(aiModule.getAiConfig).mockReturnValue({});
 
-      const resultStr = await handlePlanChange('Add user authentication');
+      const resultStr = await handlePlanChange('Add user auth');
       const result = JSON.parse(resultStr);
-      expect(result.note).toContain('AI provider not configured');
-      expect(result.goal).toBe('Add user authentication');
+      expect(result._meta.note).toContain('AI provider not configured');
+      expect(result.userGoal).toBe('Add user auth');
+      expect(result.existingPatterns).toContain('src/auth/login.ts'); // Should match 'auth'
     });
 
-    it('calls AI when configured', async () => {
-      vi.mocked(aiModule.getAiConfig).mockReturnValue({ provider: 'test', baseUrl: 'http://test' });
+    it('handles repository with no matching patterns', async () => {
+      vi.mocked(aiModule.getAiConfig).mockReturnValue({});
+
+      const resultStr = await handlePlanChange('Add redis caching mechanism');
+      const result = JSON.parse(resultStr);
+      expect(result.existingPatterns).toHaveLength(0); // No matching path
+    });
+
+    it('calls AI when configured and adds attribution', async () => {
+      vi.mocked(aiModule.getAiConfig).mockReturnValue({ provider: 'openai', baseUrl: 'http://test' });
       vi.mocked(aiModule.generateFeaturePlan).mockResolvedValue({
-        goal: "Mock AI Plan",
+        userGoal: "Mock AI Plan",
         repositoryAreas: [],
         filesToInspect: [],
-        filesToModify: [],
+        recommendedFiles: [],
         existingPatterns: [],
-        tests: [],
+        testsToAdd: [],
         risks: [],
-        orderedSteps: []
+        implementationOrder: []
       });
 
       const resultStr = await handlePlanChange('Add user authentication');
       const result = JSON.parse(resultStr);
-      expect(result.goal).toBe("Mock AI Plan");
+      expect(result.userGoal).toBe("Mock AI Plan");
+      expect(result._meta.note).toBe('Generated using openai');
+    });
+
+    it('returns error when AI output is malformed or invalid', async () => {
+      vi.mocked(aiModule.getAiConfig).mockReturnValue({ provider: 'test', baseUrl: 'http://test' });
+      vi.mocked(aiModule.generateFeaturePlan).mockResolvedValue(null);
+
+      const resultStr = await handlePlanChange('Add user authentication');
+      const result = JSON.parse(resultStr);
+      expect(result.error).toContain('Malformed AI output');
     });
   });
 });
