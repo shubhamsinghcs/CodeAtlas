@@ -6,6 +6,7 @@ import { serveCommand } from './commands/serve';
 import { reportCommand } from './commands/report';
 import { impactCommand } from './commands/impact';
 import { mcpCommand } from './commands/mcp';
+import { doctorCommand } from './commands/doctor';
 
 const program = new Command();
 
@@ -19,5 +20,6 @@ program.addCommand(serveCommand);
 program.addCommand(reportCommand);
 program.addCommand(impactCommand);
 program.addCommand(mcpCommand);
+program.addCommand(doctorCommand);
 
 program.parse(process.argv);

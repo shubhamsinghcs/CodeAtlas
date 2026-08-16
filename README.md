@@ -57,6 +57,7 @@ Currently supported for deep AST analysis:
 - `codeatlas impact <file>`: Assess the blast radius of changing a specific file.
 - `codeatlas report`: Generate a comprehensive markdown architectural document.
 - `codeatlas mcp`: Run the Model Context Protocol stdio server.
+- `codeatlas doctor`: Verify environment readiness for CodeAtlas.
 
 ## AI Providers
 
