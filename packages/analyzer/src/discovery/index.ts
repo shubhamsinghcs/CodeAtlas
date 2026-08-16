@@ -4,6 +4,7 @@ import { walkRepository } from './walker';
 import { DiscoveredRepository, DiscoveryOptions } from './types';
 
 export * from './types';
+import { UnsupportedRepositoryError, EmptyRepositoryError } from '@codeatlas/shared';
 
 export async function discoverRepository(
   input: string,
@@ -12,7 +13,7 @@ export async function discoverRepository(
   const inputType = detectInputType(input);
 
   if (inputType === 'unsupported') {
-    throw new Error(`Unsupported input: ${input}`);
+    throw new UnsupportedRepositoryError(`Unsupported input format: ${input}. Must be a local directory or GitHub URL.`);
   }
 
   let localPath = input;
@@ -37,6 +38,10 @@ export async function discoverRepository(
   }
 
   const { files, ignoredCount } = walkRepository(localPath, options.ignoredPaths);
+
+  if (files.length === 0) {
+    throw new EmptyRepositoryError('No supported source files were found in the repository.');
+  }
 
   const totalSize = files.reduce((acc, file) => acc + file.size, 0);
   const totalLines = files.reduce((acc, file) => acc + file.lineCount, 0);

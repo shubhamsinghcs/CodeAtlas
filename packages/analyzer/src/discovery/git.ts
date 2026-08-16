@@ -3,6 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as crypto from 'crypto';
+import { NetworkFailureError, GitNotFoundError } from '@codeatlas/shared';
 
 export function getGitCommitHash(repoPath: string): string | undefined {
   try {
@@ -64,8 +65,11 @@ export function cloneGithubRepository(url: string): string {
     child_process.execFileSync('git', ['clone', url, targetDir], {
       stdio: 'ignore',
     });
-  } catch (error) {
-    throw new Error(`Failed to clone GitHub repository: ${url}`, { cause: error });
+  } catch (error: any) {
+    if (error.code === 'ENOENT') {
+      throw new GitNotFoundError();
+    }
+    throw new NetworkFailureError(`Failed to clone GitHub repository: ${url}. Verify network connectivity and access rights.`);
   }
 
   return targetDir;

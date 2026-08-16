@@ -123,6 +123,11 @@ describe('Golden Repository Test Suite', () => {
       expect(fs.existsSync(repoPath)).toBe(true);
 
       // Run codeatlas analyze
+      const dbPath = path.join(repoPath, 'codeatlas.db');
+      if (fs.existsSync(dbPath)) {
+        fs.rmSync(dbPath);
+      }
+      
       try {
         execSync(`node ${CLI_PATH} analyze .`, { cwd: repoPath, stdio: 'pipe' });
       } catch (e: any) {
@@ -131,7 +136,6 @@ describe('Golden Repository Test Suite', () => {
       }
 
       // Read DB and verify
-      const dbPath = path.join(repoPath, 'codeatlas.db');
       expect(fs.existsSync(dbPath)).toBe(true);
 
       const snapshotData = cleanDatabaseForSnapshot(dbPath);

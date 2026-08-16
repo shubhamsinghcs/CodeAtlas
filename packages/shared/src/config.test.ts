@@ -4,7 +4,7 @@ import * as path from 'path';
 import { resolveConfig, loadProjectConfig } from './config';
 
 describe('Project Configuration', () => {
-  const testDir = path.join(__dirname, '__test_workspace__');
+  const testDir = path.join(__dirname, '__test_workspace_' + Math.random().toString(36).slice(2));
   const codeatlasDir = path.join(testDir, '.codeatlas');
   const configPath = path.join(codeatlasDir, 'config.json');
 

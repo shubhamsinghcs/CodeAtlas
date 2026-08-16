@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { InputType } from './types';
+import { RepositoryNotFoundError, UnsupportedRepositoryError } from '@codeatlas/shared';
 
 export function detectInputType(input: string): InputType {
   // Check if it's a GitHub URL
@@ -29,8 +30,10 @@ export function detectInputType(input: string): InputType {
     }
 
     return 'local_dir';
-  } catch {
-    // Path doesn't exist or isn't accessible
-    return 'unsupported';
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      throw new RepositoryNotFoundError(`The path ${absolutePath} does not exist.`);
+    }
+    throw new UnsupportedRepositoryError(`Cannot access path ${absolutePath}.`);
   }
 }

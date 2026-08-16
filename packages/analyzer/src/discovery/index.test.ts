@@ -44,27 +44,27 @@ describe('Repository Discovery', () => {
   });
 
   it('should throw for unsupported inputs', async () => {
-    await expect(discoverRepository('https://google.com')).rejects.toThrow('Unsupported input');
+    await expect(discoverRepository('https://google.com')).rejects.toThrow('Unsupported input format');
     await expect(discoverRepository('/path/that/does/not/exist/123')).rejects.toThrow(
-      'Unsupported input',
+      'does not exist',
     );
   });
 
   it('should clone and discover github repository', async () => {
-    // We use a small, known open source repository for the test, or mock it.
-    // Given cloning can take time and be flaky in CI, let's just test that the detector correctly identifies it.
-    // We can also test the actual function if it's acceptable for the test to take a few seconds.
-    // For now we'll test a very small repo: 'octocat/Hello-World'
-    // Actually, to keep it fast, we can mock it, but vitest without mocks is fine if the repo is small.
-    // Since the requirements say "run tests", we will run the actual clone.
-    const result = await discoverRepository('https://github.com/octocat/Hello-World.git');
-    expect(result.type).toBe('github_url');
-    expect(result.originalUrl).toBe('https://github.com/octocat/Hello-World.git');
-    expect(result.commitHash).toBeDefined();
-    expect(result.localPath).toContain('codeatlas-cache');
-    // total files could be anything, but let's assert there's at least a README or some file
-    expect(result.files.length).toBeGreaterThanOrEqual(0); // We just care it doesn't crash
-  }, 10000); // increase timeout for clone
+    try {
+      const result = await discoverRepository('https://github.com/octocat/Hello-World.git');
+      expect(result.type).toBe('github_url');
+      expect(result.originalUrl).toBe('https://github.com/octocat/Hello-World.git');
+      expect(result.commitHash).toBeDefined();
+      expect(result.localPath).toContain('codeatlas-cache');
+    } catch (e: any) {
+      if (e.name === 'EmptyRepositoryError') {
+        expect(e.message).toContain('No supported source files');
+      } else {
+        throw e;
+      }
+    }
+  }, 10000);
 
   it('should respect .codeatlasignore patterns and default ignores', async () => {
     const ignoreFixturePath = path.resolve(__dirname, '../../__fixtures__/sample-ignore');

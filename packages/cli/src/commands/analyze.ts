@@ -1,7 +1,8 @@
 import { Command } from 'commander';
 import { discoverRepository, AstEngine, DependencyResolver, GitHistoryCollector } from '@codeatlas/analyzer';
 import { DatabaseClient, schema } from '@codeatlas/database';
-import { resolveConfig } from '@codeatlas/shared';
+import { resolveConfig, DatabaseCorruptionError } from '@codeatlas/shared';
+import { formatErrorForDX } from '../utils/errors';
 import { eq } from 'drizzle-orm';
 import * as path from 'path';
 import pc from 'picocolors';
@@ -10,7 +11,8 @@ export const analyzeCommand = new Command('analyze')
   .description('Analyze a repository and persist data to SQLite')
   .argument('<target>', 'Local directory or GitHub URL to analyze')
   .option('--ignore <patterns...>', 'Ignore patterns (space separated)')
-  .action(async (target: string, options: { ignore?: string[] }) => {
+  .option('--verbose', 'Enable verbose output and stack traces')
+  .action(async (target: string, options: { ignore?: string[], verbose?: boolean }) => {
     console.log(pc.blue(`\n🔍 Starting CodeAtlas Analysis for: ${pc.cyan(target)}`));
 
     try {
@@ -180,12 +182,12 @@ export const analyzeCommand = new Command('analyze')
       console.log(pc.yellow('\nTo view results:'));
       console.log(`  Run ${pc.cyan('codeatlas serve')} to start the dashboard`);
       console.log(`  Run ${pc.cyan('codeatlas impact <file>')} to check blast radius`);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(pc.red(`\n❌ Analysis Failed: ${error.message}`));
-      } else {
-        console.error(pc.red(`\n❌ Analysis Failed: Unknown error`));
+    } catch (error: any) {
+      if (error.name === 'SqliteError') {
+        error = new DatabaseCorruptionError(error.message);
       }
+      
+      console.error(formatErrorForDX(error, options.verbose));
       process.exit(1);
     }
   });

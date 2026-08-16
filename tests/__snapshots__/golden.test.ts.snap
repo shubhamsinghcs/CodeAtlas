@@ -28,10 +28,41 @@ exports[`Golden Repository Test Suite > should deterministically analyze circula
 {
   "apiRoutes": [],
   "dependencies": [],
-  "files": [],
-  "imports": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "a.ts",
+    },
+    {
+      "language": "ts",
+      "path": "b.ts",
+    },
+  ],
+  "imports": [
+    {
+      "file": "a.ts",
+      "source": "./b",
+    },
+    {
+      "file": "b.ts",
+      "source": "./a",
+    },
+  ],
   "risks": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "file": "a.ts",
+      "is_exported": 1,
+      "name": "a",
+      "type": "variable",
+    },
+    {
+      "file": "b.ts",
+      "is_exported": 1,
+      "name": "b",
+      "type": "variable",
+    },
+  ],
   "tests": [],
 }
 `;
@@ -40,10 +71,31 @@ exports[`Golden Repository Test Suite > should deterministically analyze high-fa
 {
   "apiRoutes": [],
   "dependencies": [],
-  "files": [],
-  "imports": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "a.ts",
+    },
+    {
+      "language": "ts",
+      "path": "index.ts",
+    },
+  ],
+  "imports": [
+    {
+      "file": "a.ts",
+      "source": "./index",
+    },
+  ],
   "risks": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "file": "index.ts",
+      "is_exported": 1,
+      "name": "shared",
+      "type": "variable",
+    },
+  ],
   "tests": [],
 }
 `;
@@ -3698,10 +3750,22 @@ exports[`Golden Repository Test Suite > should deterministically analyze missing
 {
   "apiRoutes": [],
   "dependencies": [],
-  "files": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "index.ts",
+    },
+  ],
   "imports": [],
   "risks": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "file": "index.ts",
+      "is_exported": 1,
+      "name": "untest",
+      "type": "function",
+    },
+  ],
   "tests": [],
 }
 `;
@@ -3749,10 +3813,22 @@ exports[`Golden Repository Test Suite > should deterministically analyze python-
 {
   "apiRoutes": [],
   "dependencies": [],
-  "files": [],
+  "files": [
+    {
+      "language": "py",
+      "path": "main.py",
+    },
+  ],
   "imports": [],
   "risks": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "file": "main.py",
+      "is_exported": 1,
+      "name": "hello",
+      "type": "function",
+    },
+  ],
   "tests": [],
 }
 `;
@@ -3761,10 +3837,22 @@ exports[`Golden Repository Test Suite > should deterministically analyze typescr
 {
   "apiRoutes": [],
   "dependencies": [],
-  "files": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "index.ts",
+    },
+  ],
   "imports": [],
   "risks": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "file": "index.ts",
+      "is_exported": 1,
+      "name": "a",
+      "type": "variable",
+    },
+  ],
   "tests": [],
 }
 `;

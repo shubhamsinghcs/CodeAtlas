@@ -136,6 +136,17 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
+## Troubleshooting
+
+CodeAtlas provides detailed error messages to help you quickly resolve issues. 
+If an error occurs, you can run any command with the `--verbose` flag to view the full stack trace.
+
+**Common Errors:**
+- **Git is not installed or not in PATH**: CodeAtlas requires Git to collect history and clone repositories. Install Git from https://git-scm.com/downloads.
+- **No supported source files found**: Ensure your repository contains TypeScript, JavaScript, or Python files and they aren't ignored by `.codeatlasignore`.
+- **Database corruption detected**: Delete the `codeatlas.db` file in your directory and run `codeatlas analyze` again.
+- **Network failure during clone or API request**: Check your internet connection or verify your GitHub SSH keys and API keys.
+
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on setting up the monorepo, adding new language parsers, and our pull request process.
