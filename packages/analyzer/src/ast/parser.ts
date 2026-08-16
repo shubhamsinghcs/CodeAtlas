@@ -4,18 +4,20 @@ import { AstAnalysisResult } from './types';
 export abstract class BaseAdapter {
   protected parser: Parser;
 
-  constructor(language: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(language: any) {
     this.parser = new Parser();
-    this.parser.setLanguage(language);
+    this.parser.setLanguage(language as any);
   }
 
   private parseJs(sourceCode: string): unknown {
     try {
       const tree = this.parser.parse(sourceCode);
       const hasSyntaxErrors =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         typeof tree.rootNode.hasError === 'function'
-          ? (tree.rootNode as { hasError: () => boolean }).hasError()
-          : (tree.rootNode as { hasError: boolean }).hasError;
+          ? (tree.rootNode as any).hasError()
+          : tree.rootNode.hasError;
       return { tree, hasSyntaxErrors };
     } catch {
       return { tree: null, hasSyntaxErrors: true };

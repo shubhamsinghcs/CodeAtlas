@@ -173,12 +173,32 @@ export function startApiServer(port: number) {
   });
 
   app.get('/api/risks', async (c) => {
-    // Basic implementation: for a true /api/risks, we should calculate risk for all files.
-    // For now, let's just return a generic wrapper. Real dashboard logic will call Impact analyzer or risk engine in bulk.
-    // To do bulk risk computation quickly:
-    return c.json({
-      message: 'Risk list endpoint. In a full implementation, this aggregates risks.',
-    });
+    const latestRun = dbClient.db
+      .select()
+      .from(schema.analysisRuns)
+      .orderBy(desc(schema.analysisRuns.startedAt))
+      .get();
+    if (!latestRun) return c.json({ error: 'No analysis runs found' }, 404);
+
+    try {
+      const detector = new HotspotDetector(dbClient);
+      const hotspots = detector.detect(latestRun.id);
+      
+      const files = hotspots.map(h => {
+        const file = dbClient.db.select().from(schema.files).where(eq(schema.files.id, h.fileId)).get();
+        return {
+          id: h.fileId,
+          path: h.filePath,
+          lines: file?.lines || 0,
+          riskScore: h.score,
+          riskLevel: h.score >= 75 ? 'High Risk' : h.score >= 40 ? 'Medium Risk' : 'Low Risk'
+        };
+      });
+      return c.json({ files });
+    } catch (e: unknown) {
+      if (e instanceof Error) return c.json({ error: e.message }, 404);
+      return c.json({ error: 'Unknown error' }, 500);
+    }
   });
 
   console.log(pc.green(`\n🚀 CodeAtlas API Server starting...`));

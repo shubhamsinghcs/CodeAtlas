@@ -43,9 +43,6 @@ export function Overview() {
         <Card title="Dependencies">
           <div className="stat-value">{totalDependencies}</div>
         </Card>
-        <Card title="Language">
-          <div className="stat-value" style={{ fontSize: '1.5rem', marginTop: '0.5rem' }}>TypeScript / React</div>
-        </Card>
       </div>
 
       <Card title="Quick Actions">

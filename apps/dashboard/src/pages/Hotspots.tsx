@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Card, Badge } from '../components/ui';
+import { Card, Badge, Loader, ErrorMessage } from '../components/ui';
 import { Link } from 'react-router-dom';
 
 interface HotspotExplanation {
@@ -25,8 +25,8 @@ export function Hotspots() {
     }
   });
 
-  if (isLoading) return <div className="page-container"><p>Loading hotspots...</p></div>;
-  if (error) return <div className="page-container"><div className="error">Failed to load hotspots.</div></div>;
+  if (isLoading) return <Loader text="Loading hotspots..." />;
+  if (error) return <ErrorMessage error={error as Error} />;
 
   const hotspots = data?.hotspots || [];
 
@@ -49,7 +49,7 @@ export function Hotspots() {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {hotspots.map((h) => (
-            <Card key={h.fileId} title="">
+            <Card key={h.fileId}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
                 <span style={{ fontSize: '1.5rem', userSelect: 'none' }}>{h.severity}</span>
                 <Link to={`/files/${encodeURIComponent(h.filePath)}`} className="text-link" style={{ fontSize: '1.25rem', fontWeight: 600 }}>

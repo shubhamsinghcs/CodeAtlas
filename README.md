@@ -73,10 +73,12 @@ Currently supported for deep AST analysis:
 
 ## CLI Commands
 
-- `codeatlas analyze [path]`: Parse the AST and construct the SQLite cache.
+- `codeatlas analyze [path]`: Parse the AST and construct the SQLite cache. Options: `--verbose`, `--db <path>`.
 - `codeatlas serve`: Spin up the interactive React dashboard.
-- `codeatlas impact <file>`: Assess the blast radius of changing a specific file.
-- `codeatlas report`: Generate a comprehensive markdown architectural document.
+- `codeatlas impact <file>`: Assess the blast radius of changing a specific file. Options: `--verbose`, `--db <path>`.
+- `codeatlas pr`: Analyze the impact of changes in a Pull Request. Options: `--verbose`, `--db <path>`.
+- `codeatlas hotspots`: Detect and list high-risk architectural hotspots in the codebase. Options: `--verbose`, `--db <path>`.
+- `codeatlas report`: Generate a comprehensive markdown architectural document. Options: `--verbose`, `--db <path>`.
 - `codeatlas mcp`: Run the Model Context Protocol stdio server.
 - `codeatlas doctor`: Verify environment readiness for CodeAtlas.
 

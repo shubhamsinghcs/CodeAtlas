@@ -30,17 +30,15 @@ function getChangedFiles(baseRef?: string, headRef?: string): string[] {
   }
 
   try {
-    const diff = child_process.execSync(`git diff --name-only ${base}...${head}`, {
-      encoding: 'utf-8',
-      stdio: ['ignore', 'pipe', 'ignore']
+    const diff = child_process.execFileSync('git', ['diff', '--name-only', `${base}...${head}`], {
+      encoding: 'utf-8'
     });
     return diff.split('\n').map(l => l.trim()).filter(l => l.length > 0);
   } catch (e) {
     try {
       // If three-dot fails, try two-dot or just direct diff
-      const diff2 = child_process.execSync(`git diff --name-only ${base} ${head}`, {
-        encoding: 'utf-8',
-        stdio: ['ignore', 'pipe', 'ignore']
+      const diff2 = child_process.execFileSync('git', ['diff', '--name-only', base, head], {
+        encoding: 'utf-8'
       });
       return diff2.split('\n').map(l => l.trim()).filter(l => l.length > 0);
     } catch {
@@ -164,7 +162,7 @@ export const prCommand = new Command('pr')
         
         if (result.risk.level === 'High Risk') {
           aggregation.highestRisk = 'HIGH';
-          aggregation.highRiskModules.add(result.architecturalModule);
+          aggregation.highRiskModules.add(result.architecturalModule ?? 'unknown');
         } else if (result.risk.level === 'Medium Risk' && aggregation.highestRisk === 'LOW') {
           aggregation.highestRisk = 'MEDIUM';
         }

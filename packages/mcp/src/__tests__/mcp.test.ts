@@ -3,6 +3,25 @@ import { handleGetArchitecture, handlePlanChange } from '../tools';
 import * as aiModule from '@codeatlas/ai';
 import * as toolsModule from '../tools';
 
+vi.mock('@codeatlas/database', () => ({
+  DatabaseClient: vi.fn().mockImplementation(() => ({
+    db: {
+      select: vi.fn(),
+      insert: vi.fn().mockReturnThis(),
+      pragma: vi.fn(),
+    },
+    init: vi.fn(),
+  })),
+  schema: {
+    repositories: {},
+    commits: {},
+    analysisRuns: {},
+    files: {},
+    symbols: {},
+    imports: {},
+  },
+}));
+
 vi.mock('@codeatlas/ai', () => ({
   generateArchitectureSummary: vi.fn(),
   generateFeaturePlan: vi.fn(),
@@ -14,7 +33,8 @@ describe('MCP Tools', () => {
     vi.clearAllMocks();
     
     // Mock the DB select chain
-    vi.spyOn(toolsModule.dbClient.db as unknown as { select: Function }, 'select').mockReturnValue({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    vi.spyOn(toolsModule.dbClient.db as any, 'select').mockReturnValue({
       from: vi.fn().mockReturnThis(),
       orderBy: vi.fn().mockReturnThis(),
       limit: vi.fn().mockResolvedValue([

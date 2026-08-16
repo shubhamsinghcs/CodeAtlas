@@ -151,31 +151,33 @@ function DependencyGraphInner() {
       if (isTarget) className = 'node-highlighted';
       else if (!isAffected) className = 'node-dimmed';
       
+      const hidden = isFocusMode && !isAffected;
+      
+      if (n.className === className && n.hidden === hidden) {
+        return n; // skip re-render
+      }
       return {
         ...n,
         className,
-        hidden: isFocusMode && !isAffected
+        hidden
       };
     }));
 
     setEdges(eds => eds.map(e => {
       const isAffectedEdge = affectedNodeIds.has(e.source) && affectedNodeIds.has(e.target);
       
-      let className;
-      let animated = false;
+      let className = isAffectedEdge ? 'edge-highlighted edge-animated' : 'edge-dimmed';
+      let animated = isAffectedEdge;
+      const hidden = isFocusMode && !isAffectedEdge;
 
-      if (isAffectedEdge) {
-        className = 'edge-highlighted edge-animated';
-        animated = true;
-      } else {
-        className = 'edge-dimmed';
+      if (e.className === className && e.animated === animated && e.hidden === hidden) {
+        return e;
       }
-
       return {
         ...e,
         className,
         animated,
-        hidden: isFocusMode && !isAffectedEdge
+        hidden
       };
     }));
 
@@ -217,7 +219,7 @@ function DependencyGraphInner() {
             placeholder="Search files..." 
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            style={{ width: '300px', borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+            style={{ width: '100%', maxWidth: '300px', borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
           />
           <button type="submit" style={{ padding: '0 1rem', background: 'var(--bg-sidebar)', border: '1px solid var(--border-color)', borderLeft: 'none', borderTopRightRadius: 'var(--radius-md)', borderBottomRightRadius: 'var(--radius-md)', color: 'var(--text-main)' }}>Find</button>
         </form>

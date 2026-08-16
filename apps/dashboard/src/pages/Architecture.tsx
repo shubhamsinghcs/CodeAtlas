@@ -99,10 +99,10 @@ function ArchitectureInner() {
   if (error) return <ErrorMessage error={error as Error} />;
 
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', position: 'relative' }}>
+    <div className="architecture-layout" style={{ width: '100%', height: '100%', display: 'flex', position: 'relative' }}>
       
       {/* Module Graph View */}
-      <div style={{ flex: selectedModule ? '0 0 60%' : '1', transition: 'flex 0.3s ease', position: 'relative' }}>
+      <div className="architecture-graph" style={{ flex: selectedModule ? '1 1 60%' : '1', minWidth: '300px', transition: 'flex 0.3s ease', position: 'relative' }}>
         <header className="page-header" style={{ padding: 'var(--spacing-xl)', position: 'absolute', zIndex: 10, pointerEvents: 'none' }}>
           <h1 className="page-title">Architecture Layers</h1>
           <p className="page-subtitle" style={{ pointerEvents: 'auto', background: 'var(--bg-color)', padding: '0.2rem 0.5rem', borderRadius: '4px', display: 'inline-block' }}>
@@ -128,7 +128,7 @@ function ArchitectureInner() {
 
       {/* Module Drill Down Panel */}
       {selectedModule && (
-        <div style={{ flex: '1', borderLeft: '1px solid var(--border-color)', backgroundColor: 'var(--bg-sidebar)', display: 'flex', flexDirection: 'column' }}>
+        <div className="architecture-sidebar" style={{ flex: '1 1 40%', minWidth: '300px', borderLeft: '1px solid var(--border-color)', backgroundColor: 'var(--bg-sidebar)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: 'var(--spacing-xl)', borderBottom: '1px solid var(--border-color)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
               <Box className="text-accent" size={24} />

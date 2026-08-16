@@ -39,7 +39,7 @@ export const analyzeCommand = new Command('analyze')
           id: repoId,
           name: path.basename(repoDetails.localPath),
           pathOrUrl: target,
-          type: repoDetails.type,
+          type: repoDetails.type === 'github_url' ? 'github' : repoDetails.type === 'local_git' ? 'git' : 'local',
           createdAt: new Date(),
         })
         .onConflictDoNothing()
@@ -62,7 +62,7 @@ export const analyzeCommand = new Command('analyze')
           id: runId,
           repositoryId: repoId,
           commitId,
-          status: 'in_progress',
+          status: 'running',
           startedAt: new Date(),
         })
         .run();
@@ -109,12 +109,8 @@ export const analyzeCommand = new Command('analyze')
           })
           .run();
 
-        // Map language strings for AST Engine
-        let astLang = file.language;
-        if (astLang === 'typescript') astLang = 'ts';
-        if (astLang === 'javascript') astLang = 'js';
-        if (astLang === 'python') astLang = 'py';
-
+        // Language values from discovery already match the AST engine format ('ts', 'js', 'py', etc.)
+        const astLang = file.language;
         const result = astEngine.analyzeFile(file.absolutePath, astLang);
 
         if (!result.hasSyntaxErrors) {

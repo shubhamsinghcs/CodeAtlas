@@ -370,3 +370,18 @@ tr:hover td {
     transform: translateX(0);
   }
 }
+
+/* Architecture Layout */
+@media (max-width: 768px) {
+  .architecture-layout {
+    flex-direction: column !important;
+  }
+  .architecture-graph {
+    flex: 1 1 50% !important;
+  }
+  .architecture-sidebar {
+    flex: 1 1 50% !important;
+    border-left: none !important;
+    border-top: 1px solid var(--border-color);
+  }
+}

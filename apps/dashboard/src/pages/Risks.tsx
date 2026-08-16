@@ -6,10 +6,8 @@ export function Risks() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['risks'],
     queryFn: async () => {
-      // In a real implementation this would fetch from /api/risks
-      // For now we will fetch files and do basic mapping if /api/risks is a stub
-      const res = await fetch('/api/files');
-      if (!res.ok) throw new Error('Failed to fetch files');
+      const res = await fetch('/api/risks');
+      if (!res.ok) throw new Error('Failed to fetch risks');
       return res.json();
     }
   });

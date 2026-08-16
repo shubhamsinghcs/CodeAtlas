@@ -1,4 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+
+// Mock DatabaseClient before any imports that transitively open codeatlas.db
+vi.mock('@codeatlas/database', () => ({
+  DatabaseClient: vi.fn().mockImplementation(() => ({
+    db: { select: vi.fn(), insert: vi.fn().mockReturnThis(), pragma: vi.fn() },
+    init: vi.fn(),
+  })),
+  schema: {},
+}));
+
 import { analyzeCommand } from './commands/analyze';
 import { serveCommand } from './commands/serve';
 import { reportCommand } from './commands/report';

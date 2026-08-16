@@ -31,12 +31,14 @@ export function EmptyState({ title, description, icon }: { title: string; descri
   );
 }
 
-export function Card({ title, children, className = '' }: { title: string; children: React.ReactNode; className?: string }) {
+export function Card({ title, children, className = '' }: { title?: string; children: React.ReactNode; className?: string }) {
   return (
     <div className={`bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm ${className}`}>
-      <div className="px-5 py-4 border-b border-slate-800 bg-slate-900/50">
-        <h3 className="font-semibold text-slate-200 tracking-tight">{title}</h3>
-      </div>
+      {title && (
+        <div className="px-5 py-4 border-b border-slate-800 bg-slate-900/50">
+          <h3 className="font-semibold text-slate-200 tracking-tight">{title}</h3>
+        </div>
+      )}
       <div className="p-5">
         {children}
       </div>

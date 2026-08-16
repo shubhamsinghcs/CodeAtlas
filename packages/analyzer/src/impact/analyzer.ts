@@ -10,6 +10,11 @@ export class ImpactAnalyzer {
   private dbClient: DatabaseClient;
   private riskEngine: RiskEngine;
 
+  private cachedRunId: string | null = null;
+  private cachedGraph: GraphEngine | null = null;
+  private cachedFileMap: Map<string, any> | null = null;
+  private cachedAllFiles: any[] | null = null;
+
   constructor(dbClient: DatabaseClient, riskEngine = new RiskEngine()) {
     this.dbClient = dbClient;
     this.riskEngine = riskEngine;
@@ -34,25 +39,32 @@ export class ImpactAnalyzer {
     }
 
     // 2. Load Graph for this Run
-    const allFiles = db.select().from(schema.files).where(eq(schema.files.runId, runId)).all();
-    const fileMap = new Map(allFiles.map((f) => [f.id, f]));
+    if (this.cachedRunId !== runId || !this.cachedGraph || !this.cachedFileMap || !this.cachedAllFiles) {
+      this.cachedRunId = runId;
+      this.cachedAllFiles = db.select().from(schema.files).where(eq(schema.files.runId, runId)).all();
+      this.cachedFileMap = new Map(this.cachedAllFiles.map((f) => [f.id, f]));
 
-    const allImportsRes = db
-      .select()
-      .from(schema.imports)
-      .leftJoin(schema.files, eq(schema.imports.fileId, schema.files.id))
-      .where(and(eq(schema.files.runId, runId), isNotNull(schema.imports.resolvedFileId)))
-      .all();
+      const allImportsRes = db
+        .select()
+        .from(schema.imports)
+        .leftJoin(schema.files, eq(schema.imports.fileId, schema.files.id))
+        .where(and(eq(schema.files.runId, runId), isNotNull(schema.imports.resolvedFileId)))
+        .all();
 
-    const graph = new GraphEngine();
-    allFiles.forEach((f) => graph.addNode(f.id));
+      this.cachedGraph = new GraphEngine();
+      this.cachedAllFiles.forEach((f) => this.cachedGraph!.addNode(f.id));
 
-    allImportsRes.forEach((row) => {
-      const imp = row.imports;
-      if (imp && imp.resolvedFileId) {
-        graph.addEdge(imp.fileId, imp.resolvedFileId);
-      }
-    });
+      allImportsRes.forEach((row) => {
+        const imp = row.imports;
+        if (imp && imp.resolvedFileId) {
+          this.cachedGraph!.addEdge(imp.fileId, imp.resolvedFileId);
+        }
+      });
+    }
+
+    const allFiles = this.cachedAllFiles;
+    const fileMap = this.cachedFileMap;
+    const graph = this.cachedGraph;
 
     // 3. Direct Dependencies
     const directDependencies: ImpactRelationship[] = [];
