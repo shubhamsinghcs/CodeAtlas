@@ -59,6 +59,29 @@ Currently supported for deep AST analysis:
 - `codeatlas mcp`: Run the Model Context Protocol stdio server.
 - `codeatlas doctor`: Verify environment readiness for CodeAtlas.
 
+## Ignoring Files
+
+CodeAtlas automatically respects `.codeatlasignore` files placed at the root of your repository. It uses standard `.gitignore` glob semantics.
+
+By default, the following directories are automatically ignored to ensure fast analysis:
+- `.git`
+- `node_modules`
+- `dist`
+- `build`
+- `coverage`
+- `.next`
+- `__pycache__`
+- `.venv`
+
+**Example `.codeatlasignore`:**
+```gitignore
+# Ignore all generated type definitions
+*.generated.ts
+
+# Ignore a specific vendor folder
+vendor/
+```
+
 ## AI Providers
 
 CodeAtlas can enhance its structural data with LLM-generated architectural summaries and implementation plans.

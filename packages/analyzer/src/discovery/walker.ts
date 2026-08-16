@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import ignore from 'ignore';
 import { FileInfo, Language } from './types';
 
 const DEFAULT_IGNORED_DIRS = [
@@ -51,9 +52,28 @@ function countLines(filePath: string): number {
   }
 }
 
-export function walkRepository(repoPath: string, ignoredPaths: string[] = []): FileInfo[] {
+export function walkRepository(
+  repoPath: string,
+  ignoredPaths: string[] = [],
+): { files: FileInfo[]; ignoredCount: number } {
   const files: FileInfo[] = [];
-  const ignoredSet = new Set([...DEFAULT_IGNORED_DIRS, ...ignoredPaths]);
+  let ignoredCount = 0;
+
+  const ig = ignore();
+  ig.add(DEFAULT_IGNORED_DIRS);
+  if (ignoredPaths.length > 0) {
+    ig.add(ignoredPaths);
+  }
+
+  const ignoreFilePath = path.join(repoPath, '.codeatlasignore');
+  if (fs.existsSync(ignoreFilePath)) {
+    try {
+      const content = fs.readFileSync(ignoreFilePath, 'utf-8');
+      ig.add(content);
+    } catch {
+      // If we can't read it, fail silently
+    }
+  }
 
   function walk(currentDir: string) {
     let entries: fs.Dirent[];
@@ -64,11 +84,17 @@ export function walkRepository(repoPath: string, ignoredPaths: string[] = []): F
     }
 
     for (const entry of entries) {
-      if (ignoredSet.has(entry.name)) {
-        continue;
+      const absolutePath = path.join(currentDir, entry.name);
+      let relativePath = path.relative(repoPath, absolutePath).split(path.sep).join('/');
+
+      if (entry.isDirectory()) {
+        relativePath += '/';
       }
 
-      const absolutePath = path.join(currentDir, entry.name);
+      if (ig.ignores(relativePath)) {
+        ignoredCount++;
+        continue;
+      }
 
       if (entry.isDirectory()) {
         walk(absolutePath);
@@ -77,11 +103,10 @@ export function walkRepository(repoPath: string, ignoredPaths: string[] = []): F
 
         // Check if supported extension
         if (ext in SUPPORTED_EXTENSIONS) {
-          const relativePath = path.relative(repoPath, absolutePath);
           const stats = fs.statSync(absolutePath);
 
           files.push({
-            path: relativePath.split(path.sep).join('/'), // Normalize to posix for cross-platform consistency
+            path: relativePath, // Already normalized
             absolutePath,
             size: stats.size,
             lineCount: countLines(absolutePath),
@@ -94,5 +119,5 @@ export function walkRepository(repoPath: string, ignoredPaths: string[] = []): F
   }
 
   walk(repoPath);
-  return files;
+  return { files, ignoredCount };
 }

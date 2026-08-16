@@ -152,6 +152,7 @@ export const analyzeCommand = new Command('analyze')
       console.log(`Files:        ${repoDetails.files.length}`);
       console.log(`Symbols:      ${totalSymbols}`);
       console.log(`Dependencies: ${totalDependencies}`);
+      console.log(`Ignored items:${repoDetails.ignoredCount}`);
       console.log(pc.yellow('\nTo view results:'));
       console.log(`  Run ${pc.cyan('codeatlas serve')} to start the dashboard`);
       console.log(`  Run ${pc.cyan('codeatlas impact <file>')} to check blast radius`);

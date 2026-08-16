@@ -119,6 +119,9 @@ importers:
       '@codeatlas/shared':
         specifier: workspace:*
         version: link:../shared
+      ignore:
+        specifier: ^7.0.6
+        version: 7.0.6
       tree-sitter:
         specifier: ^0.25.1
         version: 0.25.1

@@ -19,7 +19,7 @@ export abstract class BaseAdapter {
           ? (tree.rootNode as any).hasError()
           : tree.rootNode.hasError;
       return { tree, hasSyntaxErrors };
-    } catch (err) {
+    } catch {
       return { tree: null, hasSyntaxErrors: true };
     }
   }

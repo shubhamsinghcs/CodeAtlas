@@ -65,4 +65,24 @@ describe('Repository Discovery', () => {
     // total files could be anything, but let's assert there's at least a README or some file
     expect(result.files.length).toBeGreaterThanOrEqual(0); // We just care it doesn't crash
   }, 10000); // increase timeout for clone
+
+  it('should respect .codeatlasignore patterns and default ignores', async () => {
+    const ignoreFixturePath = path.resolve(__dirname, '../../__fixtures__/sample-ignore');
+    const result = await discoverRepository(ignoreFixturePath);
+
+    expect(result.type).toBe('local_dir');
+    
+    const filePaths = result.files.map((f) => f.path);
+    
+    // Should include unignored files
+    expect(filePaths).toContain('index.ts');
+    expect(filePaths).toContain('nested/keep.ts');
+
+    // Should NOT include ignored files
+    expect(filePaths).not.toContain('vendor/ignored.ts');
+    expect(filePaths).not.toContain('file.generated.ts');
+
+    // Vendor dir and generated.ts were skipped. Note: ignore library tracks hits to directories.
+    expect(result.ignoredCount).toBeGreaterThanOrEqual(2);
+  });
 });

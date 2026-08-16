@@ -15,7 +15,6 @@ describe('MCP Tools', () => {
     
     // Mock the DB select chain
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let transport: any;
     vi.spyOn(toolsModule.dbClient.db, 'select').mockReturnValue({
       from: vi.fn().mockReturnThis(),
       orderBy: vi.fn().mockReturnThis(),

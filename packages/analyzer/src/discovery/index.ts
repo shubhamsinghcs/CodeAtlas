@@ -36,7 +36,7 @@ export async function discoverRepository(
     }
   }
 
-  const files = walkRepository(localPath, options.ignoredPaths);
+  const { files, ignoredCount } = walkRepository(localPath, options.ignoredPaths);
 
   const totalSize = files.reduce((acc, file) => acc + file.size, 0);
   const totalLines = files.reduce((acc, file) => acc + file.lineCount, 0);
@@ -49,5 +49,6 @@ export async function discoverRepository(
     files,
     totalSize,
     totalLines,
+    ignoredCount,
   };
 }

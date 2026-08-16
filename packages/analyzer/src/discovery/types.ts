@@ -19,6 +19,7 @@ export interface DiscoveredRepository {
   files: FileInfo[];
   totalSize: number;
   totalLines: number;
+  ignoredCount: number;
 }
 
 export interface DiscoveryOptions {
