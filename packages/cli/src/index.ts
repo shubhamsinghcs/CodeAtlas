@@ -8,6 +8,7 @@ import { impactCommand } from './commands/impact';
 import { mcpCommand } from './commands/mcp';
 import { hotspotsCommand } from './commands/hotspots';
 import { doctorCommand } from './commands/doctor';
+import { prCommand } from './commands/pr';
 
 const program = new Command();
 
@@ -23,5 +24,6 @@ program.addCommand(impactCommand);
 program.addCommand(mcpCommand);
 program.addCommand(hotspotsCommand);
 program.addCommand(doctorCommand);
+program.addCommand(prCommand);
 
 program.parse(process.argv);

@@ -1,0 +1,48 @@
+name: CodeAtlas PR Impact Analysis
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  codeatlas-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # Required to post comments on the PR
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # We need fetch-depth 0 so CodeAtlas can diff against the base branch
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # In a real project using CodeAtlas, this step would be:
+      # - run: npx @codeatlas/cli@latest analyze .
+      # Followed by:
+      # - run: npx @codeatlas/cli@latest pr
+      #
+      # But since we are inside the CodeAtlas repository itself, we will
+      # build it and run the local version.
+      
+      - name: Install dependencies
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Build CodeAtlas
+        run: pnpm install && pnpm build
+
+      - name: CodeAtlas Analyze
+        run: node packages/cli/dist/index.js analyze .
+
+      - name: CodeAtlas PR Impact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node packages/cli/dist/index.js pr

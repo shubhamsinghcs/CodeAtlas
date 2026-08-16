@@ -123,6 +123,46 @@ CodeAtlas implements the Model Context Protocol (MCP) to provide context directl
 
 **Claude Desktop Configuration:**
 
+## GitHub Actions Integration
+
+CodeAtlas can automatically analyze Pull Requests and report the change impact as a PR comment. It runs entirely locally inside the GitHub runner. No source code is sent to an external SaaS, and no secrets are required (other than the standard `GITHUB_TOKEN`).
+
+Create `.github/workflows/codeatlas.yml`:
+
+```yaml
+name: CodeAtlas PR Impact Analysis
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  codeatlas-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # Required to post comments on the PR
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for git diff
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run CodeAtlas Analyze
+        run: npx @codeatlas/cli@latest analyze .
+
+      - name: Run CodeAtlas PR Impact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx @codeatlas/cli@latest pr
+```
+
+## Configuration:
+
 Add to your `claude_desktop_config.json`:
 
 ```json
