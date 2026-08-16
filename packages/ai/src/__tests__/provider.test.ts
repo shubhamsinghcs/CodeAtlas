@@ -59,7 +59,6 @@ describe('AI Provider', () => {
 
   it('refetches if cached response fails zod validation', async () => {
     vi.spyOn(configModule, 'getAiConfig').mockReturnValue({ baseUrl: 'http://test', provider: 'test' });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(cacheModule, 'getCachedResponse').mockResolvedValue('{"foo": 123, "bar": "string"}'); // Invalid types
     const setCacheSpy = vi.spyOn(cacheModule, 'setCachedResponse').mockResolvedValue();
 

@@ -72,7 +72,7 @@ export function ImpactAnalysis() {
               <div style={{ marginTop: '1rem' }}>
                 <p style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Why is this file risky?</p>
                 <ul style={{ paddingLeft: '1.5rem', color: 'var(--text-muted)' }}>
-                  {data.risk.factors.map((f: any, i: number) => (
+                  {data.risk.factors.map((f: { name: string; description: string; contribution: number }, i: number) => (
                     <li key={i} style={{ marginBottom: '0.3rem' }}>
                       <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{f.name} (+{f.contribution}):</span> {f.description}
                     </li>

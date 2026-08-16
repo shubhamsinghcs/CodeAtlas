@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Activity, FileCode2, Network, ShieldAlert, Search, LayoutDashboard, BrainCircuit, ShieldCheck } from 'lucide-react';
+import { Activity, FileCode2, Network, ShieldAlert, Search, LayoutDashboard, BrainCircuit, ShieldCheck, Layers } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Badge } from './ui';
 
@@ -29,6 +29,10 @@ export function Layout() {
             <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} end>
               <LayoutDashboard size={18} />
               Overview
+            </NavLink>
+            <NavLink to="/architecture" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <Layers size={18} />
+              Architecture
             </NavLink>
             <NavLink to="/files" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
               <FileCode2 size={18} />

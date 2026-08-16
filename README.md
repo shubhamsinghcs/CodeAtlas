@@ -27,6 +27,7 @@ Open `http://localhost:3000` to explore your repository's architecture, risk pro
 ## Features
 
 - **AST-Based Static Extraction**: Parses TypeScript, JavaScript, and Python directly via Tree-sitter ASTs. Zero code execution.
+- **Hierarchical Architecture Exploration**: Auto-discovers modules and workspaces, allowing drill-down from Repository ➔ Module ➔ File ➔ Symbol.
 - **Dependency Graph Engine**: Traces deep imports to find dependency cycles and Fan-in/Fan-out metrics.
 - **Risk Evaluation Engine**: Deterministically calculates fragility and testing needs for every file.
 - **Impact Blast Radius**: Computes transitive dependencies to calculate the structural risk of modifying any file.

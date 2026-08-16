@@ -14,12 +14,11 @@ describe('MCP Tools', () => {
     vi.clearAllMocks();
     
     // Mock the DB select chain
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.spyOn(toolsModule.dbClient.db, 'select').mockReturnValue({
+    vi.spyOn(toolsModule.dbClient.db as unknown as { select: Function }, 'select').mockReturnValue({
       from: vi.fn().mockReturnThis(),
       orderBy: vi.fn().mockReturnThis(),
       limit: vi.fn().mockResolvedValue([{ id: 'run1', repositoryId: 'repo1', commitId: 'commit1' }]),
-    } as any);
+    });
   });
 
   describe('handleGetArchitecture', () => {

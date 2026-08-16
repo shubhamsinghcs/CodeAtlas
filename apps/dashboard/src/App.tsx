@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { Overview } from './pages/Overview';
 import { Files } from './pages/Files';
 import { FileDetails } from './pages/FileDetails';
+import { Architecture } from './pages/Architecture';
 import { Risks } from './pages/Risks';
 import { DependencyGraph } from './pages/DependencyGraph';
 import { ImpactAnalysis } from './pages/ImpactAnalysis';
@@ -13,6 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Overview />} />
+        <Route path="architecture" element={<Architecture />} />
         <Route path="files" element={<Files />} />
         <Route path="files/:path/*" element={<FileDetails />} />
         <Route path="risks" element={<Risks />} />

@@ -4,6 +4,7 @@ import { getAiConfig } from '@codeatlas/ai';
 import { DatabaseClient, schema } from '@codeatlas/database';
 import { ImpactAnalyzer } from '@codeatlas/analyzer';
 import { RiskEngine } from '@codeatlas/risk-engine';
+import { inferArchitecture, buildModuleGraph } from './architecture';
 import { eq, like, desc, isNotNull } from 'drizzle-orm';
 import pc from 'picocolors';
 
@@ -108,6 +109,25 @@ export function startApiServer(port: number) {
       }
       return c.json({ error: 'Unknown error' }, 500);
     }
+  });
+
+  app.get('/api/architecture', async (c) => {
+    const files = dbClient.db.select().from(schema.files).all();
+    const imports = dbClient.db
+      .select()
+      .from(schema.imports)
+      .where(isNotNull(schema.imports.resolvedFileId))
+      .all();
+
+    const filePaths = files.map(f => f.path);
+    const modules = inferArchitecture(filePaths);
+
+    const filesMap = new Map<string, string>();
+    files.forEach(f => filesMap.set(f.id, f.path));
+
+    const moduleGraph = buildModuleGraph(modules, imports as { fileId: string; resolvedFileId: string }[], filesMap);
+    
+    return c.json(moduleGraph);
   });
 
   app.get('/api/risks', async (c) => {
