@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { serve } from '@hono/node-server';
 import { getAiConfig } from '@codeatlas/ai';
 import { DatabaseClient, schema } from '@codeatlas/database';
-import { ImpactAnalyzer, inferArchitecture, buildModuleGraph, PatternDetector } from '@codeatlas/analyzer';
+import { ImpactAnalyzer, inferArchitecture, buildModuleGraph, PatternDetector, HotspotDetector } from '@codeatlas/analyzer';
 import { RiskEngine } from '@codeatlas/risk-engine';
 import { eq, like, desc, isNotNull } from 'drizzle-orm';
 import pc from 'picocolors';
@@ -125,6 +125,26 @@ export function startApiServer(port: number) {
       const patternDetector = new PatternDetector(dbClient, impactAnalyzer);
       const patterns = patternDetector.detectPatterns(latestRun.id, q, 3);
       return c.json({ patterns });
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        return c.json({ error: e.message }, 404);
+      }
+      return c.json({ error: 'Unknown error' }, 500);
+    }
+  });
+
+  app.get('/api/hotspots', async (c) => {
+    const latestRun = dbClient.db
+      .select()
+      .from(schema.analysisRuns)
+      .orderBy(desc(schema.analysisRuns.startedAt))
+      .get();
+    if (!latestRun) return c.json({ error: 'No analysis runs found' }, 404);
+
+    try {
+      const detector = new HotspotDetector(dbClient);
+      const hotspots = detector.detect(latestRun.id);
+      return c.json({ hotspots });
     } catch (e: unknown) {
       if (e instanceof Error) {
         return c.json({ error: e.message }, 404);

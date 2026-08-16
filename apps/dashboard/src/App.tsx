@@ -8,6 +8,7 @@ import { Risks } from './pages/Risks';
 import { DependencyGraph } from './pages/DependencyGraph';
 import { ImpactAnalysis } from './pages/ImpactAnalysis';
 import { Search } from './pages/Search';
+import { Hotspots } from './pages/Hotspots';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="files" element={<Files />} />
         <Route path="files/:path/*" element={<FileDetails />} />
         <Route path="risks" element={<Risks />} />
+        <Route path="hotspots" element={<Hotspots />} />
         <Route path="graph" element={<DependencyGraph />} />
         <Route path="impact" element={<ImpactAnalysis />} />
         <Route path="search" element={<Search />} />

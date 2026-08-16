@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Activity, FileCode2, Network, ShieldAlert, Search, LayoutDashboard, BrainCircuit, ShieldCheck, Layers } from 'lucide-react';
+import { Activity, FileCode2, Network, ShieldAlert, Search, LayoutDashboard, BrainCircuit, ShieldCheck, Layers, Flame } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Badge } from './ui';
 
@@ -41,6 +41,10 @@ export function Layout() {
             <NavLink to="/risks" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
               <ShieldAlert size={18} />
               Risks
+            </NavLink>
+            <NavLink to="/hotspots" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <Flame size={18} />
+              Hotspots
             </NavLink>
             <NavLink to="/graph" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
               <Network size={18} />
