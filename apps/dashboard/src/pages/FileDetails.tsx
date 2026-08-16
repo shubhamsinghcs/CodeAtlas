@@ -20,6 +20,15 @@ export function FileDetails() {
 
   const { file, symbols } = data;
 
+  const { data: patternsData, isLoading: isPatternsLoading } = useQuery({
+    queryKey: ['patterns', filePath],
+    queryFn: async () => {
+      const res = await fetch(`/api/patterns?q=${encodeURIComponent(filePath)}`);
+      if (!res.ok) throw new Error('Failed to fetch patterns');
+      return res.json();
+    }
+  });
+
   return (
     <div className="page-container">
       <header className="page-header">
@@ -62,6 +71,38 @@ export function FileDetails() {
           <p style={{ color: 'var(--text-muted)' }}>No AST symbols found for this file.</p>
         )}
       </Card>
+
+      {!isPatternsLoading && patternsData?.patterns && patternsData.patterns.length > 0 && (
+        <Card title="Existing Patterns">
+          <p style={{ marginBottom: '1rem', color: 'var(--text-muted)' }}>
+            These files share similar structural characteristics to the current file.
+          </p>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Path</th>
+                  <th>Module</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                {patternsData.patterns.map((p: any) => (
+                  <tr key={p.filePath}>
+                    <td style={{ fontFamily: 'var(--font-mono)' }}>
+                      <Link to={`/files/${p.filePath}`} style={{ color: 'var(--accent-color)' }}>
+                        {p.filePath}
+                      </Link>
+                    </td>
+                    <td><Badge>{p.architecturalModule}</Badge></td>
+                    <td><span style={{ fontSize: '0.9em', color: 'var(--text-muted)' }}>{p.reason}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

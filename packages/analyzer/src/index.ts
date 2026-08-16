@@ -5,3 +5,4 @@ export * from './graph/resolver';
 export * from './graph/architecture';
 export * from './impact/analyzer';
 export * from './impact/types';
+export * from './patterns';

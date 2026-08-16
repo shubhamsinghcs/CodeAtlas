@@ -22,6 +22,9 @@ describe('MCP Tools', () => {
         { id: 'run2', repositoryId: 'repo1', commitId: 'commit1', path: 'src/utils/math.ts' }
       ]),
     });
+    vi.spyOn(toolsModule.patternDetector, 'detectPatterns').mockReturnValue([
+      { filePath: 'src/auth/login.ts', reason: 'Potential existing pattern', architecturalModule: 'auth', relatedTests: [] }
+    ]);
   });
 
   describe('handleGetArchitecture', () => {
@@ -59,11 +62,12 @@ describe('MCP Tools', () => {
       const result = JSON.parse(resultStr);
       expect(result._meta.note).toContain('AI provider not configured');
       expect(result.userGoal).toBe('Add user auth');
-      expect(result.existingPatterns).toContain('src/auth/login.ts'); // Should match 'auth'
+      expect(result.existingPatterns[0].filePath).toBe('src/auth/login.ts');
     });
 
     it('handles repository with no matching patterns', async () => {
       vi.mocked(aiModule.getAiConfig).mockReturnValue({});
+      vi.spyOn(toolsModule.patternDetector, 'detectPatterns').mockReturnValue([]);
 
       const resultStr = await handlePlanChange('Add redis caching mechanism');
       const result = JSON.parse(resultStr);

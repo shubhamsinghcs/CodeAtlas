@@ -2,12 +2,21 @@ import { z } from 'zod';
 import { generateStructuredJson } from '../provider';
 import { DatabaseClient } from '@codeatlas/database';
 
+export const ExistingPatternSchema = z.object({
+  filePath: z.string(),
+  reason: z.string(),
+  relatedTests: z.array(z.string()),
+  architecturalModule: z.string(),
+});
+
+export type ExistingPattern = z.infer<typeof ExistingPatternSchema>;
+
 export const FeatureImplementationPlanSchema = z.object({
   userGoal: z.string(),
   repositoryAreas: z.array(z.string()),
   filesToInspect: z.array(z.string()),
   recommendedFiles: z.array(z.string()),
-  existingPatterns: z.array(z.string()),
+  existingPatterns: z.array(ExistingPatternSchema),
   testsToAdd: z.array(z.string()),
   risks: z.array(z.string()),
   implementationOrder: z.array(z.string()),

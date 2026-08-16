@@ -1,5 +1,5 @@
 import { DatabaseClient, schema } from '@codeatlas/database';
-import { ImpactAnalyzer } from '@codeatlas/analyzer';
+import { ImpactAnalyzer, PatternDetector } from '@codeatlas/analyzer';
 import { RiskEngine } from '@codeatlas/risk-engine';
 import { 
   generateArchitectureSummary, 
@@ -13,6 +13,7 @@ import { eq, like } from 'drizzle-orm';
 export const dbClient = new DatabaseClient('codeatlas.db');
 export const riskEngine = new RiskEngine();
 export const impactAnalyzer = new ImpactAnalyzer(dbClient, riskEngine);
+export const patternDetector = new PatternDetector(dbClient, impactAnalyzer);
 
 export const tools = [
   {
@@ -143,6 +144,8 @@ export async function handlePlanChange(featureRequest: string) {
   const allFiles = await dbClient.db.select().from(schema.files).limit(100);
   const rawContext = allFiles.map(f => f.path).join('\\n');
 
+  const existingPatterns = patternDetector.detectPatterns(latestRun[0].id, featureRequest, 5);
+
   if (aiConfig.provider || aiConfig.baseUrl) {
     let plan = await generateFeaturePlan(dbClient, featureRequest, rawContext, latestRun[0].repositoryId, latestRun[0].commitId);
     
@@ -151,6 +154,8 @@ export async function handlePlanChange(featureRequest: string) {
       return JSON.stringify({ error: "Malformed AI output or validation failure." }, null, 2);
     }
     
+    plan.existingPatterns = existingPatterns; // Override with highly accurate deterministic patterns
+
     return JSON.stringify({
       _meta: { note: `Generated using ${aiConfig.provider || 'custom provider'}` },
       ...plan
@@ -158,12 +163,6 @@ export async function handlePlanChange(featureRequest: string) {
   }
 
   // Deterministic fallback search for patterns
-  const keywords = featureRequest.toLowerCase().split(/\W+/).filter(w => w.length > 3);
-  const existingPatterns = allFiles
-    .filter(f => keywords.some(k => f.path.toLowerCase().includes(k)))
-    .map(f => f.path)
-    .slice(0, 5); // Limit to top 5 hits
-
   return JSON.stringify({
     _meta: { note: "AI provider not configured. Showing deterministic plan outline." },
     userGoal: featureRequest,
