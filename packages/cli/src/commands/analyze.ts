@@ -1,24 +1,31 @@
 import { Command } from 'commander';
 import { discoverRepository, AstEngine, DependencyResolver, GitHistoryCollector } from '@codeatlas/analyzer';
 import { DatabaseClient, schema } from '@codeatlas/database';
+import { resolveConfig } from '@codeatlas/shared';
 import { eq } from 'drizzle-orm';
-import * as path from 'path';
 import * as path from 'path';
 import pc from 'picocolors';
 
 export const analyzeCommand = new Command('analyze')
   .description('Analyze a repository and persist data to SQLite')
   .argument('<target>', 'Local directory or GitHub URL to analyze')
-  .action(async (target: string) => {
+  .option('--ignore <patterns...>', 'Ignore patterns (space separated)')
+  .action(async (target: string, options: { ignore?: string[] }) => {
     console.log(pc.blue(`\n🔍 Starting CodeAtlas Analysis for: ${pc.cyan(target)}`));
 
     try {
+      const config = resolveConfig(path.resolve(target), { ignore: options.ignore });
+      if (config.merged.ignore.length > 0) {
+        console.log(pc.gray(`Using ignore patterns: ${config.merged.ignore.join(', ')}`));
+      }
       const dbClient = new DatabaseClient('codeatlas.db');
       dbClient.init();
       // For now, assume tables are created or we push schemas.
 
       console.log(pc.gray('Detecting repository...'));
-      const repoDetails = await discoverRepository(target);
+      const repoDetails = await discoverRepository(target, {
+        ignoredPaths: config.merged.ignore
+      });
 
       console.log(pc.green(`✓ Repository detected: ${repoDetails.type}`));
 
