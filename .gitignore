@@ -8,4 +8,7 @@ dist
 *.log
 coverage/
 .DS_Store
+*.db-shm
+*.db-wal
 fixtures/benchmarks
+tests/fixtures/large-repository

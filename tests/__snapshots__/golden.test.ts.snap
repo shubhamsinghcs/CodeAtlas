@@ -1,0 +1,3770 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Golden Repository Test Suite > should deterministically analyze api-routes 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "index.ts",
+    },
+  ],
+  "imports": [],
+  "risks": [],
+  "symbols": [
+    {
+      "file": "index.ts",
+      "is_exported": 1,
+      "name": "router",
+      "type": "variable",
+    },
+  ],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze circular 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [],
+  "imports": [],
+  "risks": [],
+  "symbols": [],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze high-fan-in 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [],
+  "imports": [],
+  "risks": [],
+  "symbols": [],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze high-fan-out 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "a.ts",
+    },
+    {
+      "language": "ts",
+      "path": "b.ts",
+    },
+    {
+      "language": "ts",
+      "path": "c.ts",
+    },
+    {
+      "language": "ts",
+      "path": "index.ts",
+    },
+  ],
+  "imports": [
+    {
+      "file": "index.ts",
+      "source": "./a",
+    },
+    {
+      "file": "index.ts",
+      "source": "./b",
+    },
+    {
+      "file": "index.ts",
+      "source": "./c",
+    },
+  ],
+  "risks": [],
+  "symbols": [
+    {
+      "file": "a.ts",
+      "is_exported": 1,
+      "name": "a",
+      "type": "function",
+    },
+    {
+      "file": "b.ts",
+      "is_exported": 1,
+      "name": "b",
+      "type": "function",
+    },
+    {
+      "file": "c.ts",
+      "is_exported": 1,
+      "name": "c",
+      "type": "function",
+    },
+    {
+      "file": "index.ts",
+      "is_exported": 1,
+      "name": "main",
+      "type": "function",
+    },
+  ],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze javascript-basic 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [
+    {
+      "language": "js",
+      "path": "index.js",
+    },
+  ],
+  "imports": [],
+  "risks": [],
+  "symbols": [
+    {
+      "file": "index.js",
+      "is_exported": 0,
+      "name": "add",
+      "type": "function",
+    },
+  ],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze large-repository 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "dir_0/file_0.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_10.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_20.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_30.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_40.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_50.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_60.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_70.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_80.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_0/file_90.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_1.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_11.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_21.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_31.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_41.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_51.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_61.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_71.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_81.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_1/file_91.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_12.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_2.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_22.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_32.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_42.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_52.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_62.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_72.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_82.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_2/file_92.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_13.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_23.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_3.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_33.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_43.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_53.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_63.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_73.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_83.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_3/file_93.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_14.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_24.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_34.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_4.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_44.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_54.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_64.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_74.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_84.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_4/file_94.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_15.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_25.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_35.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_45.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_5.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_55.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_65.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_75.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_85.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_5/file_95.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_16.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_26.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_36.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_46.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_56.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_6.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_66.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_76.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_86.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_6/file_96.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_17.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_27.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_37.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_47.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_57.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_67.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_7.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_77.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_87.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_7/file_97.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_18.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_28.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_38.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_48.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_58.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_68.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_78.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_8.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_88.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_8/file_98.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_19.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_29.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_39.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_49.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_59.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_69.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_79.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_89.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_9.ts",
+    },
+    {
+      "language": "ts",
+      "path": "dir_9/file_99.ts",
+    },
+  ],
+  "imports": [
+    {
+      "file": "dir_0/file_10.ts",
+      "source": "../dir_5/file_5",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "source": "../dir_6/file_6",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "source": "../dir_7/file_7",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "source": "../dir_8/file_8",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "source": "../dir_9/file_9",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "source": "../dir_5/file_15",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "source": "../dir_6/file_16",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "source": "../dir_7/file_17",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "source": "../dir_8/file_18",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "source": "../dir_9/file_19",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "source": "../dir_5/file_25",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "source": "../dir_6/file_26",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "source": "../dir_7/file_27",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "source": "../dir_8/file_28",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "source": "../dir_9/file_29",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "source": "../dir_5/file_35",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "source": "../dir_6/file_36",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "source": "../dir_7/file_37",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "source": "../dir_8/file_38",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "source": "../dir_9/file_39",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "source": "../dir_5/file_45",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "source": "../dir_6/file_46",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "source": "../dir_7/file_47",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "source": "../dir_8/file_48",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "source": "../dir_9/file_49",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "source": "../dir_5/file_55",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "source": "../dir_6/file_56",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "source": "../dir_7/file_57",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "source": "../dir_8/file_58",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "source": "../dir_9/file_59",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "source": "../dir_5/file_65",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "source": "../dir_6/file_66",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "source": "../dir_7/file_67",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "source": "../dir_8/file_68",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "source": "../dir_9/file_69",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "source": "../dir_5/file_75",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "source": "../dir_6/file_76",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "source": "../dir_7/file_77",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "source": "../dir_8/file_78",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "source": "../dir_9/file_79",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "source": "../dir_5/file_85",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "source": "../dir_6/file_86",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "source": "../dir_7/file_87",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "source": "../dir_8/file_88",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "source": "../dir_9/file_89",
+    },
+    {
+      "file": "dir_1/file_1.ts",
+      "source": "../dir_0/file_0",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "source": "../dir_0/file_10",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "source": "../dir_6/file_6",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "source": "../dir_7/file_7",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "source": "../dir_8/file_8",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "source": "../dir_9/file_9",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "source": "../dir_0/file_20",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "source": "../dir_6/file_16",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "source": "../dir_7/file_17",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "source": "../dir_8/file_18",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "source": "../dir_9/file_19",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "source": "../dir_0/file_30",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "source": "../dir_6/file_26",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "source": "../dir_7/file_27",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "source": "../dir_8/file_28",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "source": "../dir_9/file_29",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "source": "../dir_0/file_40",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "source": "../dir_6/file_36",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "source": "../dir_7/file_37",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "source": "../dir_8/file_38",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "source": "../dir_9/file_39",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "source": "../dir_0/file_50",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "source": "../dir_6/file_46",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "source": "../dir_7/file_47",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "source": "../dir_8/file_48",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "source": "../dir_9/file_49",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "source": "../dir_0/file_60",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "source": "../dir_6/file_56",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "source": "../dir_7/file_57",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "source": "../dir_8/file_58",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "source": "../dir_9/file_59",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "source": "../dir_0/file_70",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "source": "../dir_6/file_66",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "source": "../dir_7/file_67",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "source": "../dir_8/file_68",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "source": "../dir_9/file_69",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "source": "../dir_0/file_80",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "source": "../dir_6/file_76",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "source": "../dir_7/file_77",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "source": "../dir_8/file_78",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "source": "../dir_9/file_79",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "source": "../dir_0/file_90",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "source": "../dir_6/file_86",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "source": "../dir_7/file_87",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "source": "../dir_8/file_88",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "source": "../dir_9/file_89",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "source": "../dir_0/file_10",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "source": "../dir_1/file_11",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "source": "../dir_7/file_7",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "source": "../dir_8/file_8",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "source": "../dir_9/file_9",
+    },
+    {
+      "file": "dir_2/file_2.ts",
+      "source": "../dir_0/file_0",
+    },
+    {
+      "file": "dir_2/file_2.ts",
+      "source": "../dir_1/file_1",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "source": "../dir_0/file_20",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "source": "../dir_1/file_21",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "source": "../dir_7/file_17",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "source": "../dir_8/file_18",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "source": "../dir_9/file_19",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "source": "../dir_0/file_30",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "source": "../dir_1/file_31",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "source": "../dir_7/file_27",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "source": "../dir_8/file_28",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "source": "../dir_9/file_29",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "source": "../dir_0/file_40",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "source": "../dir_1/file_41",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "source": "../dir_7/file_37",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "source": "../dir_8/file_38",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "source": "../dir_9/file_39",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "source": "../dir_0/file_50",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "source": "../dir_1/file_51",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "source": "../dir_7/file_47",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "source": "../dir_8/file_48",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "source": "../dir_9/file_49",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "source": "../dir_0/file_60",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "source": "../dir_1/file_61",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "source": "../dir_7/file_57",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "source": "../dir_8/file_58",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "source": "../dir_9/file_59",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "source": "../dir_0/file_70",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "source": "../dir_1/file_71",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "source": "../dir_7/file_67",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "source": "../dir_8/file_68",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "source": "../dir_9/file_69",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "source": "../dir_0/file_80",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "source": "../dir_1/file_81",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "source": "../dir_7/file_77",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "source": "../dir_8/file_78",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "source": "../dir_9/file_79",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "source": "../dir_0/file_90",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "source": "../dir_1/file_91",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "source": "../dir_7/file_87",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "source": "../dir_8/file_88",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "source": "../dir_9/file_89",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "source": "../dir_0/file_10",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "source": "../dir_1/file_11",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "source": "../dir_2/file_12",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "source": "../dir_8/file_8",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "source": "../dir_9/file_9",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "source": "../dir_0/file_20",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "source": "../dir_1/file_21",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "source": "../dir_2/file_22",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "source": "../dir_8/file_18",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "source": "../dir_9/file_19",
+    },
+    {
+      "file": "dir_3/file_3.ts",
+      "source": "../dir_0/file_0",
+    },
+    {
+      "file": "dir_3/file_3.ts",
+      "source": "../dir_1/file_1",
+    },
+    {
+      "file": "dir_3/file_3.ts",
+      "source": "../dir_2/file_2",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "source": "../dir_0/file_30",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "source": "../dir_1/file_31",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "source": "../dir_2/file_32",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "source": "../dir_8/file_28",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "source": "../dir_9/file_29",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "source": "../dir_0/file_40",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "source": "../dir_1/file_41",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "source": "../dir_2/file_42",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "source": "../dir_8/file_38",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "source": "../dir_9/file_39",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "source": "../dir_0/file_50",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "source": "../dir_1/file_51",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "source": "../dir_2/file_52",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "source": "../dir_8/file_48",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "source": "../dir_9/file_49",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "source": "../dir_0/file_60",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "source": "../dir_1/file_61",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "source": "../dir_2/file_62",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "source": "../dir_8/file_58",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "source": "../dir_9/file_59",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "source": "../dir_0/file_70",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "source": "../dir_1/file_71",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "source": "../dir_2/file_72",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "source": "../dir_8/file_68",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "source": "../dir_9/file_69",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "source": "../dir_0/file_80",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "source": "../dir_1/file_81",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "source": "../dir_2/file_82",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "source": "../dir_8/file_78",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "source": "../dir_9/file_79",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "source": "../dir_0/file_90",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "source": "../dir_1/file_91",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "source": "../dir_2/file_92",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "source": "../dir_8/file_88",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "source": "../dir_9/file_89",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "source": "../dir_0/file_10",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "source": "../dir_1/file_11",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "source": "../dir_2/file_12",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "source": "../dir_3/file_13",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "source": "../dir_9/file_9",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "source": "../dir_0/file_20",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "source": "../dir_1/file_21",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "source": "../dir_2/file_22",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "source": "../dir_3/file_23",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "source": "../dir_9/file_19",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "source": "../dir_0/file_30",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "source": "../dir_1/file_31",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "source": "../dir_2/file_32",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "source": "../dir_3/file_33",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "source": "../dir_9/file_29",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "source": "../dir_0/file_0",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "source": "../dir_1/file_1",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "source": "../dir_2/file_2",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "source": "../dir_3/file_3",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "source": "../dir_0/file_40",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "source": "../dir_1/file_41",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "source": "../dir_2/file_42",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "source": "../dir_3/file_43",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "source": "../dir_9/file_39",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "source": "../dir_0/file_50",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "source": "../dir_1/file_51",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "source": "../dir_2/file_52",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "source": "../dir_3/file_53",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "source": "../dir_9/file_49",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "source": "../dir_0/file_60",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "source": "../dir_1/file_61",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "source": "../dir_2/file_62",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "source": "../dir_3/file_63",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "source": "../dir_9/file_59",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "source": "../dir_0/file_70",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "source": "../dir_1/file_71",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "source": "../dir_2/file_72",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "source": "../dir_3/file_73",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "source": "../dir_9/file_69",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "source": "../dir_0/file_80",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "source": "../dir_1/file_81",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "source": "../dir_2/file_82",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "source": "../dir_3/file_83",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "source": "../dir_9/file_79",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "source": "../dir_0/file_90",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "source": "../dir_1/file_91",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "source": "../dir_2/file_92",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "source": "../dir_3/file_93",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "source": "../dir_9/file_89",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "source": "../dir_0/file_10",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "source": "../dir_1/file_11",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "source": "../dir_2/file_12",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "source": "../dir_3/file_13",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "source": "../dir_4/file_14",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "source": "../dir_0/file_20",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "source": "../dir_1/file_21",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "source": "../dir_2/file_22",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "source": "../dir_3/file_23",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "source": "../dir_4/file_24",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "source": "../dir_0/file_30",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "source": "../dir_1/file_31",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "source": "../dir_2/file_32",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "source": "../dir_3/file_33",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "source": "../dir_4/file_34",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "source": "../dir_0/file_40",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "source": "../dir_1/file_41",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "source": "../dir_2/file_42",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "source": "../dir_3/file_43",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "source": "../dir_4/file_44",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "source": "../dir_0/file_0",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "source": "../dir_1/file_1",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "source": "../dir_2/file_2",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "source": "../dir_3/file_3",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "source": "../dir_4/file_4",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "source": "../dir_0/file_50",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "source": "../dir_1/file_51",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "source": "../dir_2/file_52",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "source": "../dir_3/file_53",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "source": "../dir_4/file_54",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "source": "../dir_0/file_60",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "source": "../dir_1/file_61",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "source": "../dir_2/file_62",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "source": "../dir_3/file_63",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "source": "../dir_4/file_64",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "source": "../dir_0/file_70",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "source": "../dir_1/file_71",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "source": "../dir_2/file_72",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "source": "../dir_3/file_73",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "source": "../dir_4/file_74",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "source": "../dir_0/file_80",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "source": "../dir_1/file_81",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "source": "../dir_2/file_82",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "source": "../dir_3/file_83",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "source": "../dir_4/file_84",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "source": "../dir_0/file_90",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "source": "../dir_1/file_91",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "source": "../dir_2/file_92",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "source": "../dir_3/file_93",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "source": "../dir_4/file_94",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "source": "../dir_1/file_11",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "source": "../dir_2/file_12",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "source": "../dir_3/file_13",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "source": "../dir_4/file_14",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "source": "../dir_5/file_15",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "source": "../dir_1/file_21",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "source": "../dir_2/file_22",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "source": "../dir_3/file_23",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "source": "../dir_4/file_24",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "source": "../dir_5/file_25",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "source": "../dir_1/file_31",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "source": "../dir_2/file_32",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "source": "../dir_3/file_33",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "source": "../dir_4/file_34",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "source": "../dir_5/file_35",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "source": "../dir_1/file_41",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "source": "../dir_2/file_42",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "source": "../dir_3/file_43",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "source": "../dir_4/file_44",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "source": "../dir_5/file_45",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "source": "../dir_1/file_51",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "source": "../dir_2/file_52",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "source": "../dir_3/file_53",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "source": "../dir_4/file_54",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "source": "../dir_5/file_55",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "source": "../dir_1/file_1",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "source": "../dir_2/file_2",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "source": "../dir_3/file_3",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "source": "../dir_4/file_4",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "source": "../dir_5/file_5",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "source": "../dir_1/file_61",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "source": "../dir_2/file_62",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "source": "../dir_3/file_63",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "source": "../dir_4/file_64",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "source": "../dir_5/file_65",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "source": "../dir_1/file_71",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "source": "../dir_2/file_72",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "source": "../dir_3/file_73",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "source": "../dir_4/file_74",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "source": "../dir_5/file_75",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "source": "../dir_1/file_81",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "source": "../dir_2/file_82",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "source": "../dir_3/file_83",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "source": "../dir_4/file_84",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "source": "../dir_5/file_85",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "source": "../dir_1/file_91",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "source": "../dir_2/file_92",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "source": "../dir_3/file_93",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "source": "../dir_4/file_94",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "source": "../dir_5/file_95",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "source": "../dir_2/file_12",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "source": "../dir_3/file_13",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "source": "../dir_4/file_14",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "source": "../dir_5/file_15",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "source": "../dir_6/file_16",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "source": "../dir_2/file_22",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "source": "../dir_3/file_23",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "source": "../dir_4/file_24",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "source": "../dir_5/file_25",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "source": "../dir_6/file_26",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "source": "../dir_2/file_32",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "source": "../dir_3/file_33",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "source": "../dir_4/file_34",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "source": "../dir_5/file_35",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "source": "../dir_6/file_36",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "source": "../dir_2/file_42",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "source": "../dir_3/file_43",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "source": "../dir_4/file_44",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "source": "../dir_5/file_45",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "source": "../dir_6/file_46",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "source": "../dir_2/file_52",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "source": "../dir_3/file_53",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "source": "../dir_4/file_54",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "source": "../dir_5/file_55",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "source": "../dir_6/file_56",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "source": "../dir_2/file_62",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "source": "../dir_3/file_63",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "source": "../dir_4/file_64",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "source": "../dir_5/file_65",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "source": "../dir_6/file_66",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "source": "../dir_2/file_2",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "source": "../dir_3/file_3",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "source": "../dir_4/file_4",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "source": "../dir_5/file_5",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "source": "../dir_6/file_6",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "source": "../dir_2/file_72",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "source": "../dir_3/file_73",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "source": "../dir_4/file_74",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "source": "../dir_5/file_75",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "source": "../dir_6/file_76",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "source": "../dir_2/file_82",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "source": "../dir_3/file_83",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "source": "../dir_4/file_84",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "source": "../dir_5/file_85",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "source": "../dir_6/file_86",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "source": "../dir_2/file_92",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "source": "../dir_3/file_93",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "source": "../dir_4/file_94",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "source": "../dir_5/file_95",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "source": "../dir_6/file_96",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "source": "../dir_3/file_13",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "source": "../dir_4/file_14",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "source": "../dir_5/file_15",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "source": "../dir_6/file_16",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "source": "../dir_7/file_17",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "source": "../dir_3/file_23",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "source": "../dir_4/file_24",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "source": "../dir_5/file_25",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "source": "../dir_6/file_26",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "source": "../dir_7/file_27",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "source": "../dir_3/file_33",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "source": "../dir_4/file_34",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "source": "../dir_5/file_35",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "source": "../dir_6/file_36",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "source": "../dir_7/file_37",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "source": "../dir_3/file_43",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "source": "../dir_4/file_44",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "source": "../dir_5/file_45",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "source": "../dir_6/file_46",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "source": "../dir_7/file_47",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "source": "../dir_3/file_53",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "source": "../dir_4/file_54",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "source": "../dir_5/file_55",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "source": "../dir_6/file_56",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "source": "../dir_7/file_57",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "source": "../dir_3/file_63",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "source": "../dir_4/file_64",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "source": "../dir_5/file_65",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "source": "../dir_6/file_66",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "source": "../dir_7/file_67",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "source": "../dir_3/file_73",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "source": "../dir_4/file_74",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "source": "../dir_5/file_75",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "source": "../dir_6/file_76",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "source": "../dir_7/file_77",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "source": "../dir_3/file_3",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "source": "../dir_4/file_4",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "source": "../dir_5/file_5",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "source": "../dir_6/file_6",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "source": "../dir_7/file_7",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "source": "../dir_3/file_83",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "source": "../dir_4/file_84",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "source": "../dir_5/file_85",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "source": "../dir_6/file_86",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "source": "../dir_7/file_87",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "source": "../dir_3/file_93",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "source": "../dir_4/file_94",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "source": "../dir_5/file_95",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "source": "../dir_6/file_96",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "source": "../dir_7/file_97",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "source": "../dir_4/file_14",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "source": "../dir_5/file_15",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "source": "../dir_6/file_16",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "source": "../dir_7/file_17",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "source": "../dir_8/file_18",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "source": "../dir_4/file_24",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "source": "../dir_5/file_25",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "source": "../dir_6/file_26",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "source": "../dir_7/file_27",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "source": "../dir_8/file_28",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "source": "../dir_4/file_34",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "source": "../dir_5/file_35",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "source": "../dir_6/file_36",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "source": "../dir_7/file_37",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "source": "../dir_8/file_38",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "source": "../dir_4/file_44",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "source": "../dir_5/file_45",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "source": "../dir_6/file_46",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "source": "../dir_7/file_47",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "source": "../dir_8/file_48",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "source": "../dir_4/file_54",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "source": "../dir_5/file_55",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "source": "../dir_6/file_56",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "source": "../dir_7/file_57",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "source": "../dir_8/file_58",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "source": "../dir_4/file_64",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "source": "../dir_5/file_65",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "source": "../dir_6/file_66",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "source": "../dir_7/file_67",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "source": "../dir_8/file_68",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "source": "../dir_4/file_74",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "source": "../dir_5/file_75",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "source": "../dir_6/file_76",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "source": "../dir_7/file_77",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "source": "../dir_8/file_78",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "source": "../dir_4/file_84",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "source": "../dir_5/file_85",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "source": "../dir_6/file_86",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "source": "../dir_7/file_87",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "source": "../dir_8/file_88",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "source": "../dir_4/file_4",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "source": "../dir_5/file_5",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "source": "../dir_6/file_6",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "source": "../dir_7/file_7",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "source": "../dir_8/file_8",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "source": "../dir_4/file_94",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "source": "../dir_5/file_95",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "source": "../dir_6/file_96",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "source": "../dir_7/file_97",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "source": "../dir_8/file_98",
+    },
+  ],
+  "risks": [],
+  "symbols": [
+    {
+      "file": "dir_0/file_0.ts",
+      "is_exported": 1,
+      "name": "Class0",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_0.ts",
+      "is_exported": 1,
+      "name": "func_0",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "is_exported": 1,
+      "name": "Class10",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_10.ts",
+      "is_exported": 1,
+      "name": "func_10",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "is_exported": 1,
+      "name": "Class20",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_20.ts",
+      "is_exported": 1,
+      "name": "func_20",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "is_exported": 1,
+      "name": "Class30",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_30.ts",
+      "is_exported": 1,
+      "name": "func_30",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "is_exported": 1,
+      "name": "Class40",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_40.ts",
+      "is_exported": 1,
+      "name": "func_40",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "is_exported": 1,
+      "name": "Class50",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_50.ts",
+      "is_exported": 1,
+      "name": "func_50",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "is_exported": 1,
+      "name": "Class60",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_60.ts",
+      "is_exported": 1,
+      "name": "func_60",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "is_exported": 1,
+      "name": "Class70",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_70.ts",
+      "is_exported": 1,
+      "name": "func_70",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "is_exported": 1,
+      "name": "Class80",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_80.ts",
+      "is_exported": 1,
+      "name": "func_80",
+      "type": "function",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "is_exported": 1,
+      "name": "Class90",
+      "type": "class",
+    },
+    {
+      "file": "dir_0/file_90.ts",
+      "is_exported": 1,
+      "name": "func_90",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_1.ts",
+      "is_exported": 1,
+      "name": "Class1",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_1.ts",
+      "is_exported": 1,
+      "name": "func_1",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "is_exported": 1,
+      "name": "Class11",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_11.ts",
+      "is_exported": 1,
+      "name": "func_11",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "is_exported": 1,
+      "name": "Class21",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_21.ts",
+      "is_exported": 1,
+      "name": "func_21",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "is_exported": 1,
+      "name": "Class31",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_31.ts",
+      "is_exported": 1,
+      "name": "func_31",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "is_exported": 1,
+      "name": "Class41",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_41.ts",
+      "is_exported": 1,
+      "name": "func_41",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "is_exported": 1,
+      "name": "Class51",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_51.ts",
+      "is_exported": 1,
+      "name": "func_51",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "is_exported": 1,
+      "name": "Class61",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_61.ts",
+      "is_exported": 1,
+      "name": "func_61",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "is_exported": 1,
+      "name": "Class71",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_71.ts",
+      "is_exported": 1,
+      "name": "func_71",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "is_exported": 1,
+      "name": "Class81",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_81.ts",
+      "is_exported": 1,
+      "name": "func_81",
+      "type": "function",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "is_exported": 1,
+      "name": "Class91",
+      "type": "class",
+    },
+    {
+      "file": "dir_1/file_91.ts",
+      "is_exported": 1,
+      "name": "func_91",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "is_exported": 1,
+      "name": "Class12",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_12.ts",
+      "is_exported": 1,
+      "name": "func_12",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_2.ts",
+      "is_exported": 1,
+      "name": "Class2",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_2.ts",
+      "is_exported": 1,
+      "name": "func_2",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "is_exported": 1,
+      "name": "Class22",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_22.ts",
+      "is_exported": 1,
+      "name": "func_22",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "is_exported": 1,
+      "name": "Class32",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_32.ts",
+      "is_exported": 1,
+      "name": "func_32",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "is_exported": 1,
+      "name": "Class42",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_42.ts",
+      "is_exported": 1,
+      "name": "func_42",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "is_exported": 1,
+      "name": "Class52",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_52.ts",
+      "is_exported": 1,
+      "name": "func_52",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "is_exported": 1,
+      "name": "Class62",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_62.ts",
+      "is_exported": 1,
+      "name": "func_62",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "is_exported": 1,
+      "name": "Class72",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_72.ts",
+      "is_exported": 1,
+      "name": "func_72",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "is_exported": 1,
+      "name": "Class82",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_82.ts",
+      "is_exported": 1,
+      "name": "func_82",
+      "type": "function",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "is_exported": 1,
+      "name": "Class92",
+      "type": "class",
+    },
+    {
+      "file": "dir_2/file_92.ts",
+      "is_exported": 1,
+      "name": "func_92",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "is_exported": 1,
+      "name": "Class13",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_13.ts",
+      "is_exported": 1,
+      "name": "func_13",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "is_exported": 1,
+      "name": "Class23",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_23.ts",
+      "is_exported": 1,
+      "name": "func_23",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_3.ts",
+      "is_exported": 1,
+      "name": "Class3",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_3.ts",
+      "is_exported": 1,
+      "name": "func_3",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "is_exported": 1,
+      "name": "Class33",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_33.ts",
+      "is_exported": 1,
+      "name": "func_33",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "is_exported": 1,
+      "name": "Class43",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_43.ts",
+      "is_exported": 1,
+      "name": "func_43",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "is_exported": 1,
+      "name": "Class53",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_53.ts",
+      "is_exported": 1,
+      "name": "func_53",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "is_exported": 1,
+      "name": "Class63",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_63.ts",
+      "is_exported": 1,
+      "name": "func_63",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "is_exported": 1,
+      "name": "Class73",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_73.ts",
+      "is_exported": 1,
+      "name": "func_73",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "is_exported": 1,
+      "name": "Class83",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_83.ts",
+      "is_exported": 1,
+      "name": "func_83",
+      "type": "function",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "is_exported": 1,
+      "name": "Class93",
+      "type": "class",
+    },
+    {
+      "file": "dir_3/file_93.ts",
+      "is_exported": 1,
+      "name": "func_93",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "is_exported": 1,
+      "name": "Class14",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_14.ts",
+      "is_exported": 1,
+      "name": "func_14",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "is_exported": 1,
+      "name": "Class24",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_24.ts",
+      "is_exported": 1,
+      "name": "func_24",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "is_exported": 1,
+      "name": "Class34",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_34.ts",
+      "is_exported": 1,
+      "name": "func_34",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "is_exported": 1,
+      "name": "Class4",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_4.ts",
+      "is_exported": 1,
+      "name": "func_4",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "is_exported": 1,
+      "name": "Class44",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_44.ts",
+      "is_exported": 1,
+      "name": "func_44",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "is_exported": 1,
+      "name": "Class54",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_54.ts",
+      "is_exported": 1,
+      "name": "func_54",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "is_exported": 1,
+      "name": "Class64",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_64.ts",
+      "is_exported": 1,
+      "name": "func_64",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "is_exported": 1,
+      "name": "Class74",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_74.ts",
+      "is_exported": 1,
+      "name": "func_74",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "is_exported": 1,
+      "name": "Class84",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_84.ts",
+      "is_exported": 1,
+      "name": "func_84",
+      "type": "function",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "is_exported": 1,
+      "name": "Class94",
+      "type": "class",
+    },
+    {
+      "file": "dir_4/file_94.ts",
+      "is_exported": 1,
+      "name": "func_94",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "is_exported": 1,
+      "name": "Class15",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_15.ts",
+      "is_exported": 1,
+      "name": "func_15",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "is_exported": 1,
+      "name": "Class25",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_25.ts",
+      "is_exported": 1,
+      "name": "func_25",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "is_exported": 1,
+      "name": "Class35",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_35.ts",
+      "is_exported": 1,
+      "name": "func_35",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "is_exported": 1,
+      "name": "Class45",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_45.ts",
+      "is_exported": 1,
+      "name": "func_45",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "is_exported": 1,
+      "name": "Class5",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_5.ts",
+      "is_exported": 1,
+      "name": "func_5",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "is_exported": 1,
+      "name": "Class55",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_55.ts",
+      "is_exported": 1,
+      "name": "func_55",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "is_exported": 1,
+      "name": "Class65",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_65.ts",
+      "is_exported": 1,
+      "name": "func_65",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "is_exported": 1,
+      "name": "Class75",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_75.ts",
+      "is_exported": 1,
+      "name": "func_75",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "is_exported": 1,
+      "name": "Class85",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_85.ts",
+      "is_exported": 1,
+      "name": "func_85",
+      "type": "function",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "is_exported": 1,
+      "name": "Class95",
+      "type": "class",
+    },
+    {
+      "file": "dir_5/file_95.ts",
+      "is_exported": 1,
+      "name": "func_95",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "is_exported": 1,
+      "name": "Class16",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_16.ts",
+      "is_exported": 1,
+      "name": "func_16",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "is_exported": 1,
+      "name": "Class26",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_26.ts",
+      "is_exported": 1,
+      "name": "func_26",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "is_exported": 1,
+      "name": "Class36",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_36.ts",
+      "is_exported": 1,
+      "name": "func_36",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "is_exported": 1,
+      "name": "Class46",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_46.ts",
+      "is_exported": 1,
+      "name": "func_46",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "is_exported": 1,
+      "name": "Class56",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_56.ts",
+      "is_exported": 1,
+      "name": "func_56",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "is_exported": 1,
+      "name": "Class6",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_6.ts",
+      "is_exported": 1,
+      "name": "func_6",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "is_exported": 1,
+      "name": "Class66",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_66.ts",
+      "is_exported": 1,
+      "name": "func_66",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "is_exported": 1,
+      "name": "Class76",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_76.ts",
+      "is_exported": 1,
+      "name": "func_76",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "is_exported": 1,
+      "name": "Class86",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_86.ts",
+      "is_exported": 1,
+      "name": "func_86",
+      "type": "function",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "is_exported": 1,
+      "name": "Class96",
+      "type": "class",
+    },
+    {
+      "file": "dir_6/file_96.ts",
+      "is_exported": 1,
+      "name": "func_96",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "is_exported": 1,
+      "name": "Class17",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_17.ts",
+      "is_exported": 1,
+      "name": "func_17",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "is_exported": 1,
+      "name": "Class27",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_27.ts",
+      "is_exported": 1,
+      "name": "func_27",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "is_exported": 1,
+      "name": "Class37",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_37.ts",
+      "is_exported": 1,
+      "name": "func_37",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "is_exported": 1,
+      "name": "Class47",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_47.ts",
+      "is_exported": 1,
+      "name": "func_47",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "is_exported": 1,
+      "name": "Class57",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_57.ts",
+      "is_exported": 1,
+      "name": "func_57",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "is_exported": 1,
+      "name": "Class67",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_67.ts",
+      "is_exported": 1,
+      "name": "func_67",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "is_exported": 1,
+      "name": "Class7",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_7.ts",
+      "is_exported": 1,
+      "name": "func_7",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "is_exported": 1,
+      "name": "Class77",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_77.ts",
+      "is_exported": 1,
+      "name": "func_77",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "is_exported": 1,
+      "name": "Class87",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_87.ts",
+      "is_exported": 1,
+      "name": "func_87",
+      "type": "function",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "is_exported": 1,
+      "name": "Class97",
+      "type": "class",
+    },
+    {
+      "file": "dir_7/file_97.ts",
+      "is_exported": 1,
+      "name": "func_97",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "is_exported": 1,
+      "name": "Class18",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_18.ts",
+      "is_exported": 1,
+      "name": "func_18",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "is_exported": 1,
+      "name": "Class28",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_28.ts",
+      "is_exported": 1,
+      "name": "func_28",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "is_exported": 1,
+      "name": "Class38",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_38.ts",
+      "is_exported": 1,
+      "name": "func_38",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "is_exported": 1,
+      "name": "Class48",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_48.ts",
+      "is_exported": 1,
+      "name": "func_48",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "is_exported": 1,
+      "name": "Class58",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_58.ts",
+      "is_exported": 1,
+      "name": "func_58",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "is_exported": 1,
+      "name": "Class68",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_68.ts",
+      "is_exported": 1,
+      "name": "func_68",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "is_exported": 1,
+      "name": "Class78",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_78.ts",
+      "is_exported": 1,
+      "name": "func_78",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "is_exported": 1,
+      "name": "Class8",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_8.ts",
+      "is_exported": 1,
+      "name": "func_8",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "is_exported": 1,
+      "name": "Class88",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_88.ts",
+      "is_exported": 1,
+      "name": "func_88",
+      "type": "function",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "is_exported": 1,
+      "name": "Class98",
+      "type": "class",
+    },
+    {
+      "file": "dir_8/file_98.ts",
+      "is_exported": 1,
+      "name": "func_98",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "is_exported": 1,
+      "name": "Class19",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_19.ts",
+      "is_exported": 1,
+      "name": "func_19",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "is_exported": 1,
+      "name": "Class29",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_29.ts",
+      "is_exported": 1,
+      "name": "func_29",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "is_exported": 1,
+      "name": "Class39",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_39.ts",
+      "is_exported": 1,
+      "name": "func_39",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "is_exported": 1,
+      "name": "Class49",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_49.ts",
+      "is_exported": 1,
+      "name": "func_49",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "is_exported": 1,
+      "name": "Class59",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_59.ts",
+      "is_exported": 1,
+      "name": "func_59",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "is_exported": 1,
+      "name": "Class69",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_69.ts",
+      "is_exported": 1,
+      "name": "func_69",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "is_exported": 1,
+      "name": "Class79",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_79.ts",
+      "is_exported": 1,
+      "name": "func_79",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "is_exported": 1,
+      "name": "Class89",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_89.ts",
+      "is_exported": 1,
+      "name": "func_89",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "is_exported": 1,
+      "name": "Class9",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_9.ts",
+      "is_exported": 1,
+      "name": "func_9",
+      "type": "function",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "is_exported": 1,
+      "name": "Class99",
+      "type": "class",
+    },
+    {
+      "file": "dir_9/file_99.ts",
+      "is_exported": 1,
+      "name": "func_99",
+      "type": "function",
+    },
+  ],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze missing-tests 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [],
+  "imports": [],
+  "risks": [],
+  "symbols": [],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze monorepo 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [
+    {
+      "language": "ts",
+      "path": "packages/a/index.ts",
+    },
+    {
+      "language": "ts",
+      "path": "packages/b/index.ts",
+    },
+  ],
+  "imports": [
+    {
+      "file": "packages/b/index.ts",
+      "source": "@monorepo/a",
+    },
+  ],
+  "risks": [],
+  "symbols": [
+    {
+      "file": "packages/a/index.ts",
+      "is_exported": 1,
+      "name": "a",
+      "type": "variable",
+    },
+    {
+      "file": "packages/b/index.ts",
+      "is_exported": 1,
+      "name": "b",
+      "type": "variable",
+    },
+  ],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze python-basic 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [],
+  "imports": [],
+  "risks": [],
+  "symbols": [],
+  "tests": [],
+}
+`;
+
+exports[`Golden Repository Test Suite > should deterministically analyze typescript-basic 1`] = `
+{
+  "apiRoutes": [],
+  "dependencies": [],
+  "files": [],
+  "imports": [],
+  "risks": [],
+  "symbols": [],
+  "tests": [],
+}
+`;
