@@ -14,10 +14,13 @@ export const ImpactAnalysisResultSchema = z.object({
 
   directDependencies: z.array(ImpactRelationshipSchema),
   directDependents: z.array(ImpactRelationshipSchema),
-  transitiveDependents: z.array(ImpactRelationshipSchema),
-
+  indirectDependents: z.array(ImpactRelationshipSchema),
+  apiRoutes: z.array(ImpactRelationshipSchema),
   relatedTests: z.array(ImpactRelationshipSchema),
-  relatedRoutes: z.array(ImpactRelationshipSchema),
+  
+  architecturalModule: z.string().optional(),
+  potentiallyAffectedFiles: z.array(ImpactRelationshipSchema),
+  recommendedInspectionOrder: z.array(ImpactRelationshipSchema),
 
   // Custom schema bypass because it's from another package
   risk: z.custom<RiskEvaluation>(),

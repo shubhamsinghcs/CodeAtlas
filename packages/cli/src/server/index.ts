@@ -2,9 +2,8 @@ import { Hono } from 'hono';
 import { serve } from '@hono/node-server';
 import { getAiConfig } from '@codeatlas/ai';
 import { DatabaseClient, schema } from '@codeatlas/database';
-import { ImpactAnalyzer } from '@codeatlas/analyzer';
+import { ImpactAnalyzer, inferArchitecture, buildModuleGraph } from '@codeatlas/analyzer';
 import { RiskEngine } from '@codeatlas/risk-engine';
-import { inferArchitecture, buildModuleGraph } from './architecture';
 import { eq, like, desc, isNotNull } from 'drizzle-orm';
 import pc from 'picocolors';
 

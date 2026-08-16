@@ -3,6 +3,7 @@ import { eq, isNotNull, and } from 'drizzle-orm';
 import { GraphEngine } from '../graph/analyzer';
 import { RiskEngine, FileMetrics } from '@codeatlas/risk-engine';
 import { ImpactAnalysisResult, ImpactRelationship } from './types';
+import { inferArchitecture } from '../graph/architecture';
 import * as path from 'path';
 
 export class ImpactAnalyzer {
@@ -81,15 +82,13 @@ export class ImpactAnalyzer {
       }
     }
 
-    // 4. Transitive Dependents (BFS up to maxDepth)
-    const transitiveDependents: ImpactRelationship[] = [];
+    const indirectDependents: ImpactRelationship[] = [];
     const visited = new Set<string>();
     visited.add(targetFile.id);
 
     // Queue contains [fileId, currentDepth, explanationChain]
     const queue: Array<[string, number, string]> = [];
 
-    // Initialize queue with direct dependents
     for (const depentId of depentsIds) {
       visited.add(depentId);
       const file = fileMap.get(depentId);
@@ -110,7 +109,7 @@ export class ImpactAnalyzer {
           const nextFile = fileMap.get(nextId);
           if (nextFile) {
             const nextChain = `${path.basename(nextFile.path)} -> ${chain}`;
-            transitiveDependents.push({
+            indirectDependents.push({
               fileId: nextFile.id,
               filePath: nextFile.path,
               explanation: `transitively imports via: ${nextChain}`,
@@ -121,17 +120,30 @@ export class ImpactAnalyzer {
       }
     }
 
-    // 5. Related Tests
+    // 5. Categorize files (Tests, API Routes)
     const isTestFile = (p: string) => /\.(test|spec)\.[jt]sx?$/.test(p) || /__tests__/.test(p);
+    const isRouteFile = (p: string) => /\/api\//.test(p) || /\/routes\//.test(p) || /\/controllers\//.test(p) || /\.route\.[jt]s$/.test(p) || /\.controller\.[jt]s$/.test(p);
 
-    const allRelatedDependents = [...directDependents, ...transitiveDependents];
-    const relatedTests = allRelatedDependents.filter((d) => isTestFile(d.filePath));
-
-    // Also check if any direct dependency is a test (less common, but possible utility files for tests)
+    const allDependents = [...directDependents, ...indirectDependents];
+    
+    const relatedTests = allDependents.filter((d) => isTestFile(d.filePath));
     const relatedTestDeps = directDependencies.filter((d) => isTestFile(d.filePath));
     relatedTests.push(...relatedTestDeps);
 
-    // 6. Calculate Risk
+    const apiRoutes = allDependents.filter((d) => isRouteFile(d.filePath) && !isTestFile(d.filePath));
+
+    // 6. Architecture Module
+    const filePaths = allFiles.map((f) => f.path);
+    const modules = inferArchitecture(filePaths);
+    let architecturalModule = 'Root/Other';
+    for (const mod of modules) {
+      if (mod.files.includes(targetFile.path)) {
+        architecturalModule = mod.name;
+        break;
+      }
+    }
+
+    // 7. Calculate Risk
     const circularCycles = graph.getCircularDependencies();
     const hasCircularDependency = circularCycles.some((cycle) => cycle.includes(targetFile.id));
 
@@ -146,14 +158,42 @@ export class ImpactAnalyzer {
 
     const risk = this.riskEngine.evaluate(metrics);
 
+    // 8. Inspection Order & Potentially Affected Files
+    // Exclude tests and API routes from general "indirect dependents" if we want to display them cleanly,
+    // or just leave them in. The UI will just use the arrays.
+    
+    // De-duplicate for potentially affected files
+    const affectedMap = new Map<string, ImpactRelationship>();
+    [...directDependents, ...apiRoutes, ...indirectDependents].forEach(r => {
+      if (!isTestFile(r.filePath) && !affectedMap.has(r.fileId)) {
+        affectedMap.set(r.fileId, r);
+      }
+    });
+    
+    const potentiallyAffectedFiles = Array.from(affectedMap.values());
+
+    const inspectionMap = new Map<string, ImpactRelationship>();
+    
+    // Order: Target (skipped from list, implied), Direct, API Routes, Indirect, Tests
+    [...directDependents, ...apiRoutes, ...indirectDependents, ...relatedTests].forEach(r => {
+      if (!inspectionMap.has(r.fileId)) {
+        inspectionMap.set(r.fileId, r);
+      }
+    });
+    
+    const recommendedInspectionOrder = Array.from(inspectionMap.values());
+
     return {
       targetFileId: targetFile.id,
       targetFilePath: targetFile.path,
       directDependencies,
       directDependents,
-      transitiveDependents,
+      indirectDependents,
       relatedTests,
-      relatedRoutes: [], // Will implement API routes later
+      apiRoutes,
+      architecturalModule,
+      potentiallyAffectedFiles,
+      recommendedInspectionOrder,
       risk,
     };
   }

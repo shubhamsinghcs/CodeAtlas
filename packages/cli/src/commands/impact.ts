@@ -27,40 +27,37 @@ export const impactCommand = new Command('impact')
       console.log(pc.bold(pc.blue(`\nImpact Analysis for: ${pc.cyan(result.targetFilePath)}`)));
       console.log('--------------------------------------------------');
 
-      console.log(pc.bold('Direct Dependencies (imported by this file):'));
-      if (result.directDependencies.length === 0) console.log('  None');
-      result.directDependencies.forEach((d) =>
-        console.log(`  - ${d.filePath} (${pc.dim(d.explanation)})`),
-      );
-
-      console.log(pc.bold('\nDirect Dependents (imports this file):'));
-      if (result.directDependents.length === 0) console.log('  None');
-      result.directDependents.forEach((d) =>
-        console.log(`  - ${d.filePath} (${pc.dim(d.explanation)})`),
-      );
-
-      console.log(pc.bold('\nTransitive Dependents (ripple effect):'));
-      if (result.transitiveDependents.length === 0) console.log('  None');
-      result.transitiveDependents.forEach((d) =>
-        console.log(`  - ${d.filePath} (${pc.dim(d.explanation)})`),
-      );
-
-      console.log(pc.bold('\nRelated Tests:'));
-      if (result.relatedTests.length === 0) console.log('  None');
-      result.relatedTests.forEach((d) => console.log(`  - ${d.filePath}`));
-
-      console.log(pc.bold('\nArchitectural Risk:'));
       const riskColor =
         result.risk.level === 'High Risk'
           ? pc.red
           : result.risk.level === 'Medium Risk'
             ? pc.yellow
             : pc.green;
-      console.log(`  Level: ${riskColor(result.risk.level)} (Score: ${result.risk.score})`);
-      if (result.risk.factors.length > 0) {
-        console.log(`  Factors:`);
-        result.risk.factors.forEach((f) => console.log(`    - ${f.name} (+${f.contribution})`));
-      }
+
+      console.log(`\nImpact:\n${riskColor(result.risk.level.toUpperCase())}`);
+
+      console.log(pc.bold('\nWhy:'));
+      if (result.directDependents.length > 0) console.log(`• ${result.directDependents.length} files directly depend on this file.`);
+      if (result.indirectDependents.length > 0) console.log(`• ${result.indirectDependents.length} files indirectly depend on this file.`);
+      if (result.apiRoutes.length > 0) console.log(`• ${result.apiRoutes.length} API routes depend on it.`);
+      if (result.relatedTests.length > 0) console.log(`• ${result.relatedTests.length} test suites cover related behavior.`);
+      if (result.architecturalModule) console.log(`• Module belongs to ${result.architecturalModule} architecture area.`);
+      
+      result.risk.factors.forEach((f) => console.log(`• ${f.name} detected.`));
+
+      console.log(pc.bold('\nPotentially affected:'));
+      if (result.potentiallyAffectedFiles.length === 0) console.log('  None');
+      result.potentiallyAffectedFiles.forEach((d) =>
+        console.log(`${d.filePath}\n  ${pc.dim('Reason: ' + d.explanation)}`),
+      );
+
+      console.log(pc.bold('\nTests:'));
+      if (result.relatedTests.length === 0) console.log('  None');
+      result.relatedTests.forEach((d) => console.log(`${d.filePath}`));
+
+      console.log(pc.bold('\nRecommended inspection order:'));
+      console.log(`1. ${result.targetFilePath}`);
+      result.recommendedInspectionOrder.forEach((d, i) => console.log(`${i + 2}. ${d.filePath}`));
 
       console.log('\n');
     } catch (error: unknown) {

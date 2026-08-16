@@ -106,12 +106,12 @@ describe('ImpactAnalyzer Integration', () => {
     expect(result.directDependents).toHaveLength(1);
     expect(result.directDependents[0].filePath).toBe('service.ts');
 
-    // Transitive Dependents (controller, api, service.test)
-    expect(result.transitiveDependents).toHaveLength(3);
-    const transitivePaths = result.transitiveDependents.map((d) => d.filePath);
-    expect(transitivePaths).toContain('controller.ts');
-    expect(transitivePaths).toContain('api.ts');
-    expect(transitivePaths).toContain('service.test.ts');
+    // Indirect Dependents (controller, api, service.test.ts)
+    expect(result.indirectDependents).toHaveLength(3);
+    const indirectPaths = result.indirectDependents.map((d) => d.filePath);
+    expect(indirectPaths).toContain('controller.ts');
+    expect(indirectPaths).toContain('api.ts');
+    expect(indirectPaths).toContain('service.test.ts');
 
     // Related Tests
     expect(result.relatedTests).toHaveLength(1);
@@ -136,8 +136,8 @@ describe('ImpactAnalyzer Integration', () => {
     // Direct Dependents
     expect(result.directDependents).toHaveLength(0);
 
-    // Transitive Dependents
-    expect(result.transitiveDependents).toHaveLength(0);
+    // Indirect Dependents
+    expect(result.indirectDependents).toHaveLength(0);
 
     // Risk
     // api.ts has fanIn: 0, depth: 0, no tests. Risk = Missing Tests (+20)
