@@ -11,6 +11,14 @@ export interface FileInfo {
   isTest: boolean;
 }
 
+export interface GitMetrics {
+  commitCount: number;
+  authorCount: number;
+  recentModifications: number;
+  lastModified: number; // Unix timestamp
+  churn: 'LOW' | 'MEDIUM' | 'HIGH';
+}
+
 export interface DiscoveredRepository {
   type: InputType;
   localPath: string; // Absolute path to the analyzed directory

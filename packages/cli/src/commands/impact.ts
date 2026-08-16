@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { DatabaseClient, schema } from '@codeatlas/database';
 import { ImpactAnalyzer } from '@codeatlas/analyzer';
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import pc from 'picocolors';
 
 export const impactCommand = new Command('impact')
@@ -24,6 +24,12 @@ export const impactCommand = new Command('impact')
       const analyzer = new ImpactAnalyzer(dbClient);
       const result = analyzer.analyze(latestRun.id, file);
 
+      const targetFile = dbClient.db
+        .select()
+        .from(schema.files)
+        .where(eq(schema.files.id, result.targetFileId))
+        .get();
+
       console.log(pc.bold(pc.blue(`\nImpact Analysis for: ${pc.cyan(result.targetFilePath)}`)));
       console.log('--------------------------------------------------');
 
@@ -35,6 +41,14 @@ export const impactCommand = new Command('impact')
             : pc.green;
 
       console.log(`\nImpact:\n${riskColor(result.risk.level.toUpperCase())}`);
+
+      if (targetFile?.commitCount) {
+        console.log(pc.bold(pc.magenta('\nHistorical activity detected:')));
+        console.log(`• Commits: ${targetFile.commitCount}`);
+        console.log(`• Authors: ${targetFile.authorCount}`);
+        if (targetFile.recentModifications) console.log(`• Recent modifications: ${targetFile.recentModifications} in last 30 days`);
+        if (targetFile.churn) console.log(`• Recent churn: ${targetFile.churn}`);
+      }
 
       console.log(pc.bold('\nWhy:'));
       if (result.directDependents.length > 0) console.log(`• ${result.directDependents.length} files directly depend on this file.`);

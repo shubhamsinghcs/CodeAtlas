@@ -70,3 +70,104 @@ export function cloneGithubRepository(url: string): string {
 
   return targetDir;
 }
+
+export class GitHistoryCollector {
+  private repoPath: string;
+
+  constructor(repoPath: string) {
+    this.repoPath = repoPath;
+  }
+
+  public collect(filePaths: string[]): Map<string, import('./types').GitMetrics> {
+    const results = new Map<string, import('./types').GitMetrics>();
+    if (filePaths.length === 0) return results;
+
+    try {
+      // Get log with commit date and author
+      const output = child_process.execFileSync(
+        'git',
+        ['log', '--name-only', '--format=COMMIT|%aI|%aN'],
+        {
+          cwd: this.repoPath,
+          encoding: 'utf-8',
+          maxBuffer: 1024 * 1024 * 50, // 50MB
+        }
+      );
+
+      const lines = output.split(/\r?\n/);
+      let currentTimestamp = 0;
+      let currentAuthor = '';
+
+      const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+
+      // Temporary storage per file to aggregate data
+      const fileStats = new Map<string, {
+        commitCount: number;
+        authors: Set<string>;
+        recentMods: number;
+        lastModified: number;
+      }>();
+
+      for (const line of lines) {
+        if (!line.trim()) continue;
+
+        if (line.startsWith('COMMIT|')) {
+          const parts = line.split('|');
+          const dateStr = parts[1];
+          currentAuthor = parts[2] || 'unknown';
+          currentTimestamp = new Date(dateStr).getTime();
+          continue;
+        }
+
+        // It's a file path modified in this commit
+        const filePath = line.trim();
+        let stats = fileStats.get(filePath);
+        if (!stats) {
+          stats = {
+            commitCount: 0,
+            authors: new Set<string>(),
+            recentMods: 0,
+            lastModified: currentTimestamp, // first seen is most recent because `git log` is reverse chronological
+          };
+          fileStats.set(filePath, stats);
+        }
+
+        stats.commitCount++;
+        stats.authors.add(currentAuthor);
+        if (currentTimestamp > thirtyDaysAgo) {
+          stats.recentMods++;
+        }
+        // Since git log is reverse chronological, the first time we see the file is its last modification.
+        if (currentTimestamp > stats.lastModified) {
+          stats.lastModified = currentTimestamp;
+        }
+      }
+
+      // Convert temporary stats to GitMetrics for only the requested files
+      const requestedSet = new Set(filePaths);
+      
+      for (const [filePath, stats] of fileStats.entries()) {
+        if (requestedSet.has(filePath)) {
+          let churn: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
+          if (stats.recentMods > 5) {
+            churn = 'HIGH';
+          } else if (stats.recentMods >= 2) {
+            churn = 'MEDIUM';
+          }
+
+          results.set(filePath, {
+            commitCount: stats.commitCount,
+            authorCount: stats.authors.size,
+            recentModifications: stats.recentMods,
+            lastModified: stats.lastModified,
+            churn
+          });
+        }
+      }
+    } catch (e) {
+      // If git log fails, we just return empty results
+    }
+
+    return results;
+  }
+}

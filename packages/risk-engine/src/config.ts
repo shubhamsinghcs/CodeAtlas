@@ -13,6 +13,7 @@ export interface RiskWeightConfig {
 
   missingTestWeight: number; // max points to add
   circularDependencyWeight: number; // max points to add
+  highChurnWeight: number; // max points to add
 }
 
 export const DEFAULT_RISK_CONFIG: RiskWeightConfig = {
@@ -30,6 +31,7 @@ export const DEFAULT_RISK_CONFIG: RiskWeightConfig = {
 
   missingTestWeight: 20,
   circularDependencyWeight: 20,
+  highChurnWeight: 10,
 };
 
 export type RiskLevel = 'Low Risk' | 'Medium Risk' | 'High Risk';
@@ -41,6 +43,11 @@ export interface FileMetrics {
   lines: number;
   hasTests: boolean;
   hasCircularDependency: boolean;
+  git?: {
+    churn: 'LOW' | 'MEDIUM' | 'HIGH';
+    commitCount: number;
+    recentModifications: number;
+  };
 }
 
 export interface RiskFactor {

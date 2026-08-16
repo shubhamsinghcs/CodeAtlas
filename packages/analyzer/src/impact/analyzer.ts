@@ -154,6 +154,13 @@ export class ImpactAnalyzer {
       lines: targetFile.lines,
       hasTests: relatedTests.length > 0,
       hasCircularDependency,
+      ...(targetFile.churn && {
+        git: {
+          churn: targetFile.churn as 'LOW' | 'MEDIUM' | 'HIGH',
+          commitCount: targetFile.commitCount || 0,
+          recentModifications: targetFile.recentModifications || 0,
+        }
+      })
     };
 
     const risk = this.riskEngine.evaluate(metrics);

@@ -11,6 +11,11 @@ export const files = sqliteTable('files', {
   size: integer('size').notNull(),
   lines: integer('lines').notNull(),
   hash: text('hash'),
+  commitCount: integer('commit_count'),
+  authorCount: integer('author_count'),
+  recentModifications: integer('recent_modifications'),
+  lastModified: integer('last_modified'),
+  churn: text('churn', { enum: ['LOW', 'MEDIUM', 'HIGH'] }),
 });
 
 export const dependencies = sqliteTable('dependencies', {

@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { discoverRepository, AstEngine, DependencyResolver } from '@codeatlas/analyzer';
+import { discoverRepository, AstEngine, DependencyResolver, GitHistoryCollector } from '@codeatlas/analyzer';
 import { DatabaseClient, schema } from '@codeatlas/database';
 import { eq } from 'drizzle-orm';
 import * as path from 'path';
@@ -64,12 +64,24 @@ export const analyzeCommand = new Command('analyze')
       const absoluteFiles = repoDetails.files.map((f: { absolutePath: string }) => f.absolutePath);
       const resolver = new DependencyResolver(repoDetails.localPath, absoluteFiles);
 
+      // Collect Git History if applicable
+      let gitMetricsMap = new Map();
+      if (repoDetails.type === 'local_git' || repoDetails.type === 'github_url') {
+        console.log(pc.gray('Analyzing Git history (this may take a few seconds)...'));
+        const gitCollector = new GitHistoryCollector(repoDetails.localPath);
+        // Map relative paths to expected Git output (which is also relative to repo root)
+        const filePaths = repoDetails.files.map(f => f.path);
+        gitMetricsMap = gitCollector.collect(filePaths);
+      }
+
       let totalSymbols = 0;
       let totalDependencies = 0;
 
       for (let i = 0; i < repoDetails.files.length; i++) {
         const file = repoDetails.files[i];
         const fileId = `file_${runId}_${i}`;
+
+        const gitMetrics = gitMetricsMap.get(file.path);
 
         dbClient.db
           .insert(schema.files)
@@ -80,6 +92,11 @@ export const analyzeCommand = new Command('analyze')
             language: file.language,
             size: file.size,
             lines: file.lineCount,
+            commitCount: gitMetrics?.commitCount,
+            authorCount: gitMetrics?.authorCount,
+            recentModifications: gitMetrics?.recentModifications,
+            lastModified: gitMetrics?.lastModified,
+            churn: gitMetrics?.churn,
           })
           .run();
 

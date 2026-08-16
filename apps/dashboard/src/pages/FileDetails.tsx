@@ -23,7 +23,7 @@ export function FileDetails() {
   const { data: patternsData, isLoading: isPatternsLoading } = useQuery({
     queryKey: ['patterns', filePath],
     queryFn: async () => {
-      const res = await fetch(`/api/patterns?q=${encodeURIComponent(filePath)}`);
+      const res = await fetch(`/api/patterns?q=${encodeURIComponent(filePath || '')}`);
       if (!res.ok) throw new Error('Failed to fetch patterns');
       return res.json();
     }
@@ -43,34 +43,65 @@ export function FileDetails() {
         </div>
       </header>
 
-      <Card title="Symbols Overview">
-        {symbols && symbols.length > 0 ? (
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Exported</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                {symbols.map((sym: { id: string; name: string; kind: string; type: string; isExported: boolean; line: number; startLine?: number; endLine?: number }) => (
-                  <tr key={sym.id}>
-                    <td style={{ fontFamily: 'var(--font-mono)' }}>{sym.name}</td>
-                    <td><Badge>{sym.type}</Badge></td>
-                    <td>{sym.isExported ? <Badge variant="success">Yes</Badge> : <span style={{color: 'var(--text-muted)'}}>-</span>}</td>
-                    <td>L{sym.startLine} - L{sym.endLine}</td>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+        <Card title="Symbols Overview">
+          {symbols && symbols.length > 0 ? (
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Exported</th>
+                    <th>Location</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p style={{ color: 'var(--text-muted)' }}>No AST symbols found for this file.</p>
+                </thead>
+                <tbody>
+                  {symbols.map((sym: { id: string; name: string; kind: string; type: string; isExported: boolean; line: number; startLine?: number; endLine?: number }) => (
+                    <tr key={sym.id}>
+                      <td style={{ fontFamily: 'var(--font-mono)' }}>{sym.name}</td>
+                      <td><Badge>{sym.type}</Badge></td>
+                      <td>{sym.isExported ? <Badge variant="success">Yes</Badge> : <span style={{color: 'var(--text-muted)'}}>-</span>}</td>
+                      <td>L{sym.startLine} - L{sym.endLine}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p style={{ color: 'var(--text-muted)' }}>No AST symbols found for this file.</p>
+          )}
+        </Card>
+
+        {file.commitCount !== null && file.commitCount !== undefined && (
+          <Card title="Historical Activity">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Total Commits</span>
+                <strong>{file.commitCount}</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Unique Contributors</span>
+                <strong>{file.authorCount}</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Recent Modifications (30d)</span>
+                <strong>{file.recentModifications}</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Recent Churn</span>
+                <Badge variant={file.churn === 'HIGH' ? 'danger' : file.churn === 'MEDIUM' ? 'warning' : 'success'}>
+                  {file.churn || 'LOW'}
+                </Badge>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Last Modified</span>
+                <strong>{file.lastModified ? new Date(file.lastModified).toLocaleDateString() : 'Unknown'}</strong>
+              </div>
+            </div>
+          </Card>
         )}
-      </Card>
+      </div>
 
       {!isPatternsLoading && patternsData?.patterns && patternsData.patterns.length > 0 && (
         <Card title="Existing Patterns">

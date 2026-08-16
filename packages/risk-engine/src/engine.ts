@@ -78,6 +78,16 @@ export class RiskEngine {
       });
     }
 
+    // 7. Git Churn
+    if (metrics.git && metrics.git.churn === 'HIGH') {
+      score += this.config.highChurnWeight;
+      factors.push({
+        name: 'High churn',
+        description: `File has been modified ${metrics.git.recentModifications} times recently.`,
+        contribution: this.config.highChurnWeight
+      });
+    }
+
     // Cap the score at 100
     score = Math.min(100, Math.max(0, score));
 

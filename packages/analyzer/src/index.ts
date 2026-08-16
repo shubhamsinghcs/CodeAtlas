@@ -1,4 +1,6 @@
-export * from './discovery';
+export * from './discovery/index';
+export * from './discovery/types';
+export * from './discovery/git';
 export * from './ast';
 export * from './graph/analyzer';
 export * from './graph/resolver';
