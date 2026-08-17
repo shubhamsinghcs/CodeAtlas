@@ -1,7 +1,6 @@
 # CodeAtlas
 
-[![CI](https://github.com/codeatlas/codeatlas/actions/workflows/ci.yml/badge.svg)](https://github.com/codeatlas/codeatlas/actions)
-[![npm version](https://img.shields.io/npm/v/@codeatlas/cli.svg)](https://www.npmjs.com/package/@codeatlas/cli)
+[![CI](https://github.com/shubhamsinghcs/CodeAtlas/actions/workflows/ci.yml/badge.svg)](https://github.com/shubhamsinghcs/CodeAtlas/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 > "Give your AI coding agent a map before it edits your code."
@@ -73,13 +72,13 @@ Currently supported for deep AST analysis:
 
 ## CLI Commands
 
-- `codeatlas analyze [path]`: Parse the AST and construct the SQLite cache. Options: `--verbose`, `--db <path>`.
-- `codeatlas serve`: Spin up the interactive React dashboard.
-- `codeatlas impact <file>`: Assess the blast radius of changing a specific file. Options: `--verbose`, `--db <path>`.
-- `codeatlas pr`: Analyze the impact of changes in a Pull Request. Options: `--verbose`, `--db <path>`.
-- `codeatlas hotspots`: Detect and list high-risk architectural hotspots in the codebase. Options: `--verbose`, `--db <path>`.
-- `codeatlas report`: Generate a comprehensive markdown architectural document. Options: `--verbose`, `--db <path>`.
-- `codeatlas mcp`: Run the Model Context Protocol stdio server.
+- `codeatlas analyze <target>`: Parse the AST and construct the SQLite cache. `<target>` is a local path or GitHub URL. Options: `--verbose`, `--ignore <patterns...>`.
+- `codeatlas serve`: Spin up the interactive React dashboard. Options: `-p, --port <number>`.
+- `codeatlas impact <file>`: Assess the blast radius of changing a specific file.
+- `codeatlas pr`: Analyze the impact of changes in a Pull Request. Options: `--verbose`.
+- `codeatlas hotspots`: Detect and list high-risk architectural hotspots in the codebase.
+- `codeatlas report`: Generate a comprehensive markdown architectural document. Options: `-o, --output <path>`.
+- `codeatlas mcp`: Run the Model Context Protocol server. Options: `--stdio`, `-p, --port <number>`.
 - `codeatlas doctor`: Verify environment readiness for CodeAtlas.
 
 ## Ignoring Files

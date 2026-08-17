@@ -8,7 +8,10 @@ dist
 *.log
 coverage/
 .DS_Store
+Thumbs.db
 *.db-shm
 *.db-wal
 fixtures/benchmarks
 tests/fixtures/large-repository
+# Generated output files
+codeatlas-report.md

@@ -56,8 +56,14 @@ export function cloneGithubRepository(url: string): string {
       });
       return targetDir;
     } catch {
-      // If updating fails, remove it and clone again
-      fs.rmSync(targetDir, { recursive: true, force: true });
+      // If updating fails, try to remove and re-clone. On Windows, another
+      // parallel process may hold a lock (EBUSY), in which case we skip
+      // removal and attempt to use the existing directory.
+      try {
+        fs.rmSync(targetDir, { recursive: true, force: true });
+      } catch {
+        // Ignore EBUSY / lock errors from parallel test workers on Windows
+      }
     }
   }
 
